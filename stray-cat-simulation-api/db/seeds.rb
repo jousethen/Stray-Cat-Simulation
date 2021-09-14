@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Test Seeding
+cats = Cat.create([{name: "Test Kitty 1", affection: 10}, {name: "Test Kitty 2", affection: 5 }])
