@@ -19,10 +19,11 @@ During the Night:
 - Check give boosts based on accessories
 
 
-Features:
+Optional Features:
 - Restart Button
 - Keep Cat
 - Random Events
+- Track Days
 
 
 Classes
