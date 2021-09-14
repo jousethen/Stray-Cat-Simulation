@@ -34,6 +34,6 @@ Utility(baseUrl)
     - restartGame()
 
 Todo: 
---Make model for cats
+--Begin Logic for Days without styles
 
 
