@@ -8,12 +8,17 @@ class Utility {
 }
 
 class Cat {
-  constructor(name, hp, hunger, affection, toughness) {
+  constructor(id, name, hp, hunger, affection, toughness) {
     this.name = name;
     this.hp = hp;
     this.hunger = hunger;
     this.affection = affection;
     this.toughness = toughness;
+  }
+
+  feed() {
+    this.hunger -= 5;
+    if (this.hunger < 0) { this.hunger = 0 };
   }
 
   cardInfo() {
@@ -34,9 +39,9 @@ class Cat {
           </div>
           </p> 
           
-          <a href="#" class="btn btn-primary">Feed</a>
-          <a href="#" class="btn btn-primary">Pet</a>
-          <a href="#" class="btn btn-primary">Give</a>
+          <button type="button" class="btn btn-primary feed">Feed</button>
+          <button type="button" class="btn btn-primary pet">Pet</button>
+          <button type="button" class="btn btn-primary heal">Heal</button>
         </div>
       </div>`
 
@@ -47,12 +52,10 @@ class Cat {
     let catsArr = cats.filter(cat => {
       return cat.affection >= Math.floor(Math.random() * 11)
     });
-
     return catsArr.map(cat => {
-      return new Cat(cat.name, cat.hp, cat.hunger, cat.affection, cat.toughness);
+      return new Cat(cat.id, cat.name, cat.hp, cat.hunger, cat.affection, cat.toughness);
     });
   }
-
 }
 
 const utility = new Utility;
@@ -70,10 +73,22 @@ document.addEventListener("DOMContentLoaded", () => {
         let catElement = document.createElement("div");
         catElement.className = "col";
         catElement.style = "max - width: 240px;"
+        catElement.id = `cat-${cat.id}`
         catElement.innerHTML = cat.cardInfo();
 
+        const feedBtn = catElement.getElementsByClassName("feed");
+        const petBtn = catElement.getElementsByClassName("pet");
+        const healBtn = catElement.getElementsByClassName("heal");
+
+        feedBtn[0].addEventListener("click", (e) => {
+          cat.feed();
+        });
+
         utility.catContainer.appendChild(catElement);
+
+
       });
     });
+
 });
 
