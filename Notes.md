@@ -35,5 +35,4 @@ Utility(baseUrl)
     - restartGame()
 
 Todo: 
---Begin Logic for Days without styles
-
+--BRing data from JS to Rails
