@@ -24,6 +24,7 @@ Optional Features:
 - Keep Cat
 - Random Events
 - Track Days
+- Legend
 
 
 Classes
@@ -35,5 +36,4 @@ Utility(baseUrl)
 
 Todo: 
 --Begin Logic for Days without styles
-
 

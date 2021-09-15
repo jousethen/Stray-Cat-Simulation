@@ -23,9 +23,20 @@ class Cat {
         <div class="card-body">
           <h5 class="card-title">${this.name}</h5>
           <p class="card-text">
-          ${this.hp}HP
-          </p>
+          <div class="progress">
+            <i class="fas fa-briefcase-medical"></i><div class="progress-bar w-${this.hp * 10}" role="progressbar"  aria-valuenow="${this.hp}" aria-valuemin="0" aria-valuemax="10">${this.hp * 10}%</div>
+          </div>
+          <div class="progress">
+          <i class="fas fa-hamburger"></i><div class="progress-bar w-${this.hunger * 10} bg-warning" role="progressbar"  aria-valuenow="${this.hunger}" aria-valuemin="0" aria-valuemax="10">${this.hunger * 10}%</div>
+          </div>
+          <div class="progress">
+            <i class="fas fa-heart"></i><div class="progress-bar w-${this.affection * 10} bg-danger" role="progressbar"  aria-valuenow="${this.affection}" aria-valuemin="0" aria-valuemax="10">${this.affection * 10}%</div>
+          </div>
+          </p> 
+          
           <a href="#" class="btn btn-primary">Feed</a>
+          <a href="#" class="btn btn-primary">Pet</a>
+          <a href="#" class="btn btn-primary">Give</a>
         </div>
       </div>`
 
@@ -46,8 +57,9 @@ class Cat {
 
 const utility = new Utility;
 let todaysCats = [];
-document.addEventListener("DOMContentLoaded", () => {
 
+//On Load
+document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/cats")
     .then(function (response) {
       return response.json()
@@ -62,11 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         utility.catContainer.appendChild(catElement);
       });
-
     });
-
-
-
-
 });
 
