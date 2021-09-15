@@ -18,13 +18,15 @@ class Cat {
 
   cardInfo() {
     let html =
-      `<img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">${this.name}</h5>
-        <p class="card-text">
-        ${this.hp}HP
-        </p>
-        <a href="#" class="btn btn-primary">Feed</a>
+      `<div class="card">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/c/cd/Wildlife_Sheriff_Cat_Icon.png/revision/latest?cb=20210316084923" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${this.name}</h5>
+          <p class="card-text">
+          ${this.hp}HP
+          </p>
+          <a href="#" class="btn btn-primary">Feed</a>
+        </div>
       </div>`
 
     return html;
@@ -54,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       todaysCats.forEach(cat => {
         let catElement = document.createElement("div");
-        catElement.className = "card";
-        catElement.style = "width: 18rem;"
+        catElement.className = "col";
+        catElement.style = "max - width: 240px;"
         catElement.innerHTML = cat.cardInfo();
 
         utility.catContainer.appendChild(catElement);
