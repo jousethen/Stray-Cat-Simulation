@@ -1,5 +1,5 @@
 
-.cat-container {
+#cat-container {
   background: url('img/background.jpg');
   /* Set rules to fill background */
   min-height: 100%;
