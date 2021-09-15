@@ -17,7 +17,7 @@ class Cat {
   }
 
   feed(catElement) {
-    this.hunger += 1;
+    this.hunger -= 5;
     if (this.hunger < 0) { this.hunger = 0 };
 
     catElement.getElementsByClassName("card-text")[0].innerHTML = this.fillOutCard();
@@ -26,17 +26,23 @@ class Cat {
 
   fillOutCard() {
     let html =
-      `<div class="progress">
-        <i class="fas fa-briefcase-medical"></i><div class="progress-bar w-${this.hp * 10} hpProg" role="progressbar"  aria-valuenow="${this.hp}" aria-valuemin="0" aria-valuemax="10">${this.hp * 10}%</div>
-      </div>
+      `<span><i class="fas fa-briefcase-medical"></i>Health: ${this.hp}/10</span>
       <div class="progress">
-        <i class="fas fa-hamburger"></i><div class="progress-bar w-${this.hunger * 10} bg-warning foodProg" role="progressbar"  aria-valuenow="${this.hunger}" aria-valuemin="0" aria-valuemax="10">${this.hunger * 10}%</div>
+        <div class="progress-bar hpProg" role="progressbar"  style="width: ${this.hp * 10}%" aria-valuenow="${this.hp}" aria-valuemin="0" aria-valuemax="10"></div>
       </div>
+
+      <span><i class="fas fa-hamburger"></i>Hunger: ${this.hunger}/10</span>
       <div class="progress">
-        <i class="fas fa-heart"></i><div class="progress-bar w-${this.affection * 10} bg-danger affectionProg" role="progressbar"  aria-valuenow="${this.affection}" aria-valuemin="0" aria-valuemax="10">${this.affection * 10}%</div>
+        <div class="progress-bar bg-warning foodProg" role="progressbar" style="width: ${this.hunger * 10}%"  aria-valuenow="${this.hunger}" aria-valuemin="0" aria-valuemax="10"></div>
+      </div>
+
+      <span><i class="fas fa-heart"></i>Affection: ${this.affection}/10</span>
+      <div class="progress">
+        <div class="progress-bar bg-danger affectionProg" role="progressbar" style="width: ${this.affection * 10}%" aria-valuenow="${this.affection}" aria-valuemin="0" aria-valuemax="10"></div>
       </div>`
     return html;
   }
+
   generateCard() {
     let html =
       `<div class="card">
@@ -68,7 +74,7 @@ class Cat {
 const utility = new Utility;
 let todaysCats = [];
 
-//On Load
+/* ---------------------------------------------LOAD DOM---------------------------------------------*/
 document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/cats")
     .then(function (response) {
