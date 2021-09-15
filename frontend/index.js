@@ -16,27 +16,34 @@ class Cat {
     this.toughness = toughness;
   }
 
-  feed() {
-    this.hunger -= 5;
+  feed(catElement) {
+    this.hunger += 1;
     if (this.hunger < 0) { this.hunger = 0 };
+
+    catElement.getElementsByClassName("card-text")[0].innerHTML = this.fillOutCard();
+    console.log(this);
   }
 
-  cardInfo() {
+  fillOutCard() {
+    let html =
+      `<div class="progress">
+        <i class="fas fa-briefcase-medical"></i><div class="progress-bar w-${this.hp * 10} hpProg" role="progressbar"  aria-valuenow="${this.hp}" aria-valuemin="0" aria-valuemax="10">${this.hp * 10}%</div>
+      </div>
+      <div class="progress">
+        <i class="fas fa-hamburger"></i><div class="progress-bar w-${this.hunger * 10} bg-warning foodProg" role="progressbar"  aria-valuenow="${this.hunger}" aria-valuemin="0" aria-valuemax="10">${this.hunger * 10}%</div>
+      </div>
+      <div class="progress">
+        <i class="fas fa-heart"></i><div class="progress-bar w-${this.affection * 10} bg-danger affectionProg" role="progressbar"  aria-valuenow="${this.affection}" aria-valuemin="0" aria-valuemax="10">${this.affection * 10}%</div>
+      </div>`
+    return html;
+  }
+  generateCard() {
     let html =
       `<div class="card">
         <img src="https://static.wikia.nocookie.net/gensin-impact/images/c/cd/Wildlife_Sheriff_Cat_Icon.png/revision/latest?cb=20210316084923" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${this.name}</h5>
           <p class="card-text">
-          <div class="progress">
-            <i class="fas fa-briefcase-medical"></i><div class="progress-bar w-${this.hp * 10}" role="progressbar"  aria-valuenow="${this.hp}" aria-valuemin="0" aria-valuemax="10">${this.hp * 10}%</div>
-          </div>
-          <div class="progress">
-          <i class="fas fa-hamburger"></i><div class="progress-bar w-${this.hunger * 10} bg-warning" role="progressbar"  aria-valuenow="${this.hunger}" aria-valuemin="0" aria-valuemax="10">${this.hunger * 10}%</div>
-          </div>
-          <div class="progress">
-            <i class="fas fa-heart"></i><div class="progress-bar w-${this.affection * 10} bg-danger" role="progressbar"  aria-valuenow="${this.affection}" aria-valuemin="0" aria-valuemax="10">${this.affection * 10}%</div>
-          </div>
           </p> 
           
           <button type="button" class="btn btn-primary feed">Feed</button>
@@ -74,17 +81,23 @@ document.addEventListener("DOMContentLoaded", () => {
         catElement.className = "col";
         catElement.style = "max - width: 240px;"
         catElement.id = `cat-${cat.id}`
-        catElement.innerHTML = cat.cardInfo();
+        catElement.innerHTML = cat.generateCard();
+
+        //Get Card-text seperately so that we can refresh without losing pointer to button
+        let catCardText = catElement.getElementsByClassName("card-text");
+        catCardText[0].innerHTML = cat.fillOutCard();
 
         const feedBtn = catElement.getElementsByClassName("feed");
         const petBtn = catElement.getElementsByClassName("pet");
         const healBtn = catElement.getElementsByClassName("heal");
+        utility.catContainer.appendChild(catElement);
+
+
 
         feedBtn[0].addEventListener("click", (e) => {
-          cat.feed();
+          cat.feed(catElement);
         });
 
-        utility.catContainer.appendChild(catElement);
 
 
       });
