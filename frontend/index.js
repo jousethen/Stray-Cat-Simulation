@@ -5,24 +5,49 @@ class Utility {
     this.accessoriesURL = `${baseURL}/accessories`;
     this.catContainer = document.getElementById("cat-container");
   }
+
+  static constraint(cat) {
+    cat.hp < 0 ? (cat.hp = 0) : (cat.hp = cat.hp);
+    cat.hunger < 0 ? (cat.hunger = 0) : (cat.hunger = cat.hunger);
+    cat.affection < 0 ? (cat.affection = 0) : (cat.affection = cat.affection);
+
+    cat.hp > 10 ? (cat.hp = 10) : (cat.hp = cat.hp);
+    cat.hunger > 10 ? (cat.hunger = 10) : (cat.hunger = cat.hunger);
+    cat.affection > 10 ? (cat.affection = 10) : (cat.affection = cat.affection);
+  }
 }
 
 class Cat {
   constructor(id, name, hp, hunger, affection, toughness) {
+    this.id = id;
     this.name = name;
     this.hp = hp;
     this.hunger = hunger;
     this.affection = affection;
-    this.toughness = toughness;
+    this._toughness = toughness;
   }
 
   feed(catElement) {
     this.hunger -= 5;
-    if (this.hunger < 0) { this.hunger = 0 };
-
+    this.affection += 1;
+    Utility.constraint(this);
     catElement.getElementsByClassName("card-text")[0].innerHTML = this.fillOutCard();
-    console.log(this);
   }
+
+  heal(catElement) {
+    this.hp += 3;
+    this.hunger -= 1;
+    Utility.constraint(this);
+    catElement.getElementsByClassName("card-text")[0].innerHTML = this.fillOutCard();
+  }
+
+  pet(catElement) {
+    this.affection += 3;
+    this.hp += 1;
+    Utility.constraint(this);
+    catElement.getElementsByClassName("card-text")[0].innerHTML = this.fillOutCard();
+  }
+
 
   fillOutCard() {
     let html =
@@ -99,9 +124,17 @@ document.addEventListener("DOMContentLoaded", () => {
         utility.catContainer.appendChild(catElement);
 
 
-
+        // Button Events
         feedBtn[0].addEventListener("click", (e) => {
           cat.feed(catElement);
+        });
+
+        healBtn[0].addEventListener("click", (e) => {
+          cat.heal(catElement);
+        });
+
+        petBtn[0].addEventListener("click", (e) => {
+          cat.pet(catElement);
         });
 
 
