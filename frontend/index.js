@@ -48,6 +48,11 @@ class Cat {
     catElement.getElementsByClassName("card-text")[0].innerHTML = this.fillOutCard();
   }
 
+  rename(catElement) {
+    let newName = prompt("Name Your Friend:", "");
+    this.name = newName;
+    catElement.getElementsByClassName("card-title")[0].innerHTML = `${this.name}`
+  }
 
   fillOutCard() {
     let html =
@@ -73,7 +78,7 @@ class Cat {
       `<div class="card">
         <img src="https://static.wikia.nocookie.net/gensin-impact/images/c/cd/Wildlife_Sheriff_Cat_Icon.png/revision/latest?cb=20210316084923" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">${this.name}</h5>
+          <h5 class="card-title">${this.name} <button class="btn btn-secondary btn-sm rename"><i class="fas fa-pen-square"></i></button></h5>
           <p class="card-text">
           </p> 
           
@@ -121,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const feedBtn = catElement.getElementsByClassName("feed");
         const petBtn = catElement.getElementsByClassName("pet");
         const healBtn = catElement.getElementsByClassName("heal");
+        const renameBtn = catElement.getElementsByClassName("rename");
         utility.catContainer.appendChild(catElement);
 
 
@@ -137,6 +143,11 @@ document.addEventListener("DOMContentLoaded", () => {
           cat.pet(catElement);
         });
 
+        renameBtn[0].addEventListener("click", (e) => {
+          cat.rename(catElement);
+        });
+
+        // Rename Event
 
 
       });
