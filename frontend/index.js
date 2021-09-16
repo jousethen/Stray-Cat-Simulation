@@ -159,5 +159,38 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 utility.nextDayBtn.addEventListener("click", (e) => {
-  console.log("Next Day")
+  e.preventDefault();
+
+  //Writeback data for all cats that showed up today
+  todaysCats.forEach(cat => {
+    let catData = {
+      "id": cat.id,
+      "name": cat.name,
+      "hp": cat.hp,
+      "hunger": cat.hunger,
+      "affection": cat.affection
+    }
+
+    let likeConfig = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(catData)
+    };
+
+    fetch(`http://localhost:3000/cats/${element.id}`, likeConfig)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (json) {
+        console.log("start next day")
+      })
+  });
+
+
+
+
+
 });
