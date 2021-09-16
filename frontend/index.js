@@ -4,6 +4,8 @@ class Utility {
     this.catsURL = `${baseURL}/cats`;
     this.accessoriesURL = `${baseURL}/accessories`;
     this.catContainer = document.getElementById("cat-container");
+    this.footer = document.querySelector('footer');
+    this.nextDayBtn = document.getElementById("next-day");
   }
 
   static constraint(cat) {
@@ -82,9 +84,9 @@ class Cat {
           <p class="card-text">
           </p> 
           
-          <button type="button" class="btn btn-primary feed">Feed</button>
-          <button type="button" class="btn btn-primary pet">Pet</button>
-          <button type="button" class="btn btn-primary heal">Heal</button>
+          <button type="button" class="btn btn-primary btn-sm feed">Feed</button>
+          <button type="button" class="btn btn-primary btn-sm  pet">Pet</button>
+          <button type="button" class="btn btn-primary btn-sm heal">Heal</button>
         </div>
       </div>`
 
@@ -101,7 +103,8 @@ class Cat {
   }
 }
 
-const utility = new Utility;
+const utility = new Utility("http://localhost:3000/");
+console.log(utility);
 let todaysCats = [];
 
 /* ---------------------------------------------LOAD DOM---------------------------------------------*/
@@ -155,3 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+utility.nextDayBtn.addEventListener("click", (e) => {
+  console.log("Next Day")
+});
