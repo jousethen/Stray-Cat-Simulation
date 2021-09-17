@@ -3,4 +3,8 @@ class CatsController < ApplicationController
     cats = Cat.all
     render json: cats
   end
+
+  def update
+    puts params;
+  end
 end
