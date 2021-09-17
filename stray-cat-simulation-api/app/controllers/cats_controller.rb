@@ -9,8 +9,9 @@ class CatsController < ApplicationController
   def update
     cat = Cat.find_by_id(params[:id])
 
+    
     cat.update(cat_params)
-
+    Cat.overnightAdventures
     if cat.save
       puts "success"
     else
@@ -20,7 +21,7 @@ class CatsController < ApplicationController
 
    private 
   def cat_params
-    params.require(:cat).permit(:id, :name, :hp, :hunger, :affection)
+    params.require(:cat).permit(:id, :name, :hp, :hunger, :affection, :toughness)
   end
 
 end

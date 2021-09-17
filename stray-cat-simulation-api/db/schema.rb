@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_09_14_154331) do
     t.integer "hp", default: 10
     t.integer "hunger", default: 0
     t.integer "affection", default: 1
-    t.integer "toughness", default: 5
+    t.integer "toughness", default: 2
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

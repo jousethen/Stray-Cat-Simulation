@@ -11,7 +11,6 @@ class Utility {
 
   newDay() {
     $("#next-day-img").fadeIn(3000, function () { location.reload(); });
-
   }
 
 
