@@ -5,6 +5,7 @@ class Cat < ApplicationRecord
       cat.takeDamage();
       cat.loseAffection();
       cat.getHungry();
+
       cat.save;
     end
   end
@@ -17,13 +18,19 @@ class Cat < ApplicationRecord
     if (self.hunger == 10)
       self.hp -= 1
     end
+
+    if (self.hp <= 0)
+      self.affection = 0
+    end
   end
 
   def loseAffection()
-    self.affection -= 1;
+    if (self.affection >= 1)
+      self.affection -= 1
+    end
   end
 
   def getHungry()
-    self.hunger += 2;
+    self.hunger += 1;
   end
 end

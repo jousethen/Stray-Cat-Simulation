@@ -38,6 +38,7 @@ class Cat {
   feed(catElement) {
     this.hunger -= 5;
     this.affection += 1;
+    this.hp += 1;
     Utility.constraint(this);
     catElement.getElementsByClassName("card-text")[0].innerHTML = this.fillOutCard();
   }
@@ -45,6 +46,7 @@ class Cat {
   heal(catElement) {
     this.hp += 3;
     this.hunger -= 1;
+    this.affection += 1;
     Utility.constraint(this);
     catElement.getElementsByClassName("card-text")[0].innerHTML = this.fillOutCard();
   }
