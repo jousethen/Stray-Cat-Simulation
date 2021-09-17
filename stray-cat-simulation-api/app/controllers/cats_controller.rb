@@ -1,5 +1,6 @@
 class CatsController < ApplicationController
   def index
+    Cat.overnightAdventures
     cats = Cat.all
     render json: cats
   end
@@ -11,7 +12,6 @@ class CatsController < ApplicationController
 
     
     cat.update(cat_params)
-    Cat.overnightAdventures
     if cat.save
       puts "success"
     else

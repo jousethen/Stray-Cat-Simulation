@@ -4,7 +4,8 @@ class Cat < ApplicationRecord
     Cat.all.each do |cat|
       cat.takeDamage();
       cat.loseAffection();
-
+      cat.getHungry();
+      cat.save;
     end
   end
 
@@ -22,4 +23,7 @@ class Cat < ApplicationRecord
     self.affection -= 1;
   end
 
+  def getHungry()
+    self.hunger += 2;
+  end
 end
