@@ -103,8 +103,7 @@ class Cat {
   }
 }
 
-const utility = new Utility("http://localhost:3000/");
-console.log(utility);
+const utility = new Utility("http://localhost:3000");
 let todaysCats = [];
 
 /* ---------------------------------------------LOAD DOM---------------------------------------------*/
@@ -163,15 +162,15 @@ utility.nextDayBtn.addEventListener("click", (e) => {
 
   //Writeback data for all cats that showed up today
   todaysCats.forEach(cat => {
-    let catData = {
-      "id": cat.id,
-      "name": cat.name,
-      "hp": cat.hp,
-      "hunger": cat.hunger,
-      "affection": cat.affection
-    }
+    const catData = {
+      id: cat.id,
+      name: cat.name,
+      hp: cat.hp,
+      hunger: cat.hunger,
+      affection: cat.affection
+    };
 
-    let likeConfig = {
+    const catConfig = {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -180,13 +179,7 @@ utility.nextDayBtn.addEventListener("click", (e) => {
       body: JSON.stringify(catData)
     };
 
-    fetch(`http://localhost:3000/cats/${element.id}`, likeConfig)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (json) {
-        console.log("start next day")
-      })
+    fetch(`${utility.catsURL}/${cat.id}`, catConfig);
   });
 
 
