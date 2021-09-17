@@ -6,7 +6,14 @@ class Utility {
     this.catContainer = document.getElementById("cat-container");
     this.footer = document.querySelector('footer');
     this.nextDayBtn = document.getElementById("next-day");
+    this.nextDayText = document.getElementById("next-day-img");
   }
+
+  newDay() {
+    $("#next-day-img").fadeIn(3000, function () { location.reload(); });
+
+  }
+
 
   static constraint(cat) {
     cat.hp < 0 ? (cat.hp = 0) : (cat.hp = cat.hp);
@@ -108,7 +115,8 @@ let todaysCats = [];
 
 /* ---------------------------------------------LOAD DOM---------------------------------------------*/
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost:3000/cats")
+
+  fetch(utility.catsURL)
     .then(function (response) {
       return response.json()
     }).then(function (json) {
@@ -130,7 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const healBtn = catElement.getElementsByClassName("heal");
         const renameBtn = catElement.getElementsByClassName("rename");
         utility.catContainer.appendChild(catElement);
-
 
         // Button Events
         feedBtn[0].addEventListener("click", (e) => {
@@ -159,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 utility.nextDayBtn.addEventListener("click", (e) => {
   e.preventDefault();
-
   //Writeback data for all cats that showed up today
   todaysCats.forEach(cat => {
     const catData = {
@@ -180,6 +186,8 @@ utility.nextDayBtn.addEventListener("click", (e) => {
     };
 
     fetch(`${utility.catsURL}/${cat.id}`, catConfig);
+    utility.newDay();
+
   });
 
 
