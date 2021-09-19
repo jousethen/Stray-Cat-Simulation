@@ -10,22 +10,7 @@ class Utility {
   }
 
   newDay() {
-    const catConfig = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: {}
-    };
-
-    fetch(`${utility.catsURL}/overnight-adventures`, catConfig).then(function (response) {
-      return response.json()
-    }).then(function (json) {
-      console.log("A day goes by")
-      $("#next-day-img").fadeIn(3000, function () { location.reload(); });
-    });
-
+    $("#next-day-img").fadeIn(3000, function () { location.reload(); });
   }
 
 
@@ -202,12 +187,9 @@ utility.nextDayBtn.addEventListener("click", (e) => {
     };
 
     fetch(`${utility.catsURL}/${cat.id}`, catConfig);
-    utility.newDay();
+
 
   });
 
-
-
-
-
+  utility.newDay();
 });

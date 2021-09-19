@@ -12,10 +12,12 @@ class Cat < ApplicationRecord
 
   def takeDamage()
     if (self.toughness <= rand(1..10))
-      self.hp -= rand(1..3)
+      if (self.hp >= 0)
+        self.hp -= rand(1..3)
+      end
     end
     
-    if (self.food == 10)
+    if (self.food == 0)
       self.hp -= 1
     end
 
