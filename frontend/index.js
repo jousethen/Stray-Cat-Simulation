@@ -11,17 +11,21 @@ class Utility {
 
   newDay() {
     const catConfig = {
-      method: "PATCH",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: { on: "yes" }
+      body: {}
     };
 
-    fetch(`${utility.catsURL}/overnight-adventures`, catConfig);
+    fetch(`${utility.catsURL}/overnight-adventures`, catConfig).then(function (response) {
+      return response.json()
+    }).then(function (json) {
+      console.log("A day goes by")
+      $("#next-day-img").fadeIn(3000, function () { location.reload(); });
+    });
 
-    $("#next-day-img").fadeIn(3000, function () { location.reload(); });
   }
 
 
@@ -82,7 +86,7 @@ class Cat {
         <div class="progress-bar hpProg" role="progressbar"  style="width: ${this.hp * 10}%" aria-valuenow="${this.hp}" aria-valuemin="0" aria-valuemax="10"></div>
       </div>
 
-      <span><i class="fas fa-hamburger"></i>food: ${this.food}/10</span>
+      <span><i class="fas fa-hamburger"></i>Food: ${this.food}/10</span>
       <div class="progress">
         <div class="progress-bar bg-warning foodProg" role="progressbar" style="width: ${this.food * 10}%"  aria-valuenow="${this.food}" aria-valuemin="0" aria-valuemax="10"></div>
       </div>
