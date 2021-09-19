@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_19_165733) do
+ActiveRecord::Schema.define(version: 2021_09_19_174733) do
 
   create_table "cats", force: :cascade do |t|
     t.string "name", default: "No Name"
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(version: 2021_09_19_165733) do
     t.integer "affection", default: 1
     t.integer "toughness", default: 5
     t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer "actions", default: 5
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

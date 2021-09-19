@@ -8,3 +8,4 @@
 
 # Test Seeding
 cats = Cat.create([{name: "Test Kitty 1", affection: 10}, {name: "Test Kitty 2", affection: 5 }])
+User.create()
