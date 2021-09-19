@@ -1,11 +1,12 @@
 class CatsController < ApplicationController
   def index
-    Cat.overnightAdventures 
     cats = Cat.all
     render json: cats
   end
 
-
+  def overnight
+    Cat.overnightAdventures
+  end
   def update
     cat = Cat.find_by_id(params[:id])
 
