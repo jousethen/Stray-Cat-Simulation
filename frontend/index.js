@@ -10,33 +10,44 @@ class Utility {
   }
 
   newDay() {
+    const catConfig = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: { on: "yes" }
+    };
+
+    fetch(`${utility.catsURL}/overnight-adventures`, catConfig);
+
     $("#next-day-img").fadeIn(3000, function () { location.reload(); });
   }
 
 
   static constraint(cat) {
     cat.hp < 0 ? (cat.hp = 0) : (cat.hp = cat.hp);
-    cat.hunger < 0 ? (cat.hunger = 0) : (cat.hunger = cat.hunger);
+    cat.food < 0 ? (cat.food = 0) : (cat.food = cat.food);
     cat.affection < 0 ? (cat.affection = 0) : (cat.affection = cat.affection);
 
     cat.hp > 10 ? (cat.hp = 10) : (cat.hp = cat.hp);
-    cat.hunger > 10 ? (cat.hunger = 10) : (cat.hunger = cat.hunger);
+    cat.food > 10 ? (cat.food = 10) : (cat.food = cat.food);
     cat.affection > 10 ? (cat.affection = 10) : (cat.affection = cat.affection);
   }
 }
 
 class Cat {
-  constructor(id, name, hp, hunger, affection, toughness) {
+  constructor(id, name, hp, food, affection, toughness) {
     this.id = id;
     this.name = name;
     this.hp = hp;
-    this.hunger = hunger;
+    this.food = food;
     this.affection = affection;
     this._toughness = toughness;
   }
 
   feed(catElement) {
-    this.hunger -= 5;
+    this.food += 5;
     this.affection += 1;
     this.hp += 1;
     Utility.constraint(this);
@@ -45,7 +56,7 @@ class Cat {
 
   heal(catElement) {
     this.hp += 3;
-    this.hunger -= 1;
+    this.food += 1;
     this.affection += 1;
     Utility.constraint(this);
     catElement.getElementsByClassName("card-text")[0].innerHTML = this.fillOutCard();
@@ -71,9 +82,9 @@ class Cat {
         <div class="progress-bar hpProg" role="progressbar"  style="width: ${this.hp * 10}%" aria-valuenow="${this.hp}" aria-valuemin="0" aria-valuemax="10"></div>
       </div>
 
-      <span><i class="fas fa-hamburger"></i>Hunger: ${this.hunger}/10</span>
+      <span><i class="fas fa-hamburger"></i>food: ${this.food}/10</span>
       <div class="progress">
-        <div class="progress-bar bg-warning foodProg" role="progressbar" style="width: ${this.hunger * 10}%"  aria-valuenow="${this.hunger}" aria-valuemin="0" aria-valuemax="10"></div>
+        <div class="progress-bar bg-warning foodProg" role="progressbar" style="width: ${this.food * 10}%"  aria-valuenow="${this.food}" aria-valuemin="0" aria-valuemax="10"></div>
       </div>
 
       <span><i class="fas fa-heart"></i>Affection: ${this.affection}/10</span>
@@ -106,7 +117,7 @@ class Cat {
       return cat.affection >= Math.floor(Math.random() * 11)
     });
     return catsArr.map(cat => {
-      return new Cat(cat.id, cat.name, cat.hp, cat.hunger, cat.affection, cat.toughness);
+      return new Cat(cat.id, cat.name, cat.hp, cat.food, cat.affection, cat.toughness);
     });
   }
 }
@@ -173,7 +184,7 @@ utility.nextDayBtn.addEventListener("click", (e) => {
       id: cat.id,
       name: cat.name,
       hp: cat.hp,
-      hunger: cat.hunger,
+      food: cat.food,
       affection: cat.affection
     };
 

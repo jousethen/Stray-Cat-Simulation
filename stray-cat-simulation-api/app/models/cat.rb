@@ -15,7 +15,7 @@ class Cat < ApplicationRecord
       self.hp -= rand(1..3)
     end
     
-    if (self.hunger == 10)
+    if (self.food == 10)
       self.hp -= 1
     end
 
@@ -31,6 +31,6 @@ class Cat < ApplicationRecord
   end
 
   def getHungry()
-    self.hunger += 1;
+    self.food -= 1;
   end
 end

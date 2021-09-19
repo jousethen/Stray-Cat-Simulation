@@ -1,16 +1,17 @@
 class CatsController < ApplicationController
   def index
-    Cat.overnightAdventures
     cats = Cat.all
     render json: cats
   end
 
- 
+  def overnight
+    Cat.overnightAdventures
+    redirect_to cats
+  end
 
   def update
     cat = Cat.find_by_id(params[:id])
 
-    
     cat.update(cat_params)
     if cat.save
       puts "success"
@@ -21,7 +22,7 @@ class CatsController < ApplicationController
 
    private 
   def cat_params
-    params.require(:cat).permit(:id, :name, :hp, :hunger, :affection, :toughness)
+    params.require(:cat).permit(:id, :name, :hp, :food, :affection, :toughness)
   end
 
 end
