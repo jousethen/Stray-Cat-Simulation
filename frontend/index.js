@@ -9,6 +9,7 @@ class Utility {
     this.nextDayBtn = document.getElementById("next-day");
     this.nextDayText = document.getElementById("next-day-img");
     this.userActionsElement = document.getElementById("actions");
+    this.actionsAvailable = 0;
   }
 
   newDay() {
@@ -26,6 +27,10 @@ class Utility {
     $("#next-day-img").fadeIn(3000, function () { location.reload(); });
   }
 
+  useAction() {
+    this.actionsAvailable -= 1;
+    this.userActionsElement.innerText = `Actions: ${utility.actionsAvailable}`;
+  }
 
   static constraint(cat) {
     cat.hp < 0 ? (cat.hp = 0) : (cat.hp = cat.hp);
@@ -134,8 +139,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(function (response) {
       return response.json()
     }).then(function (json) {
-      console.log(json);
-      utility.userActionsElement.innerText = `Actions: ${json.actions}`
+      utility.actionsAvailable = parseInt(json.actions);
+      utility.userActionsElement.innerText = `Actions: ${utility.actionsAvailable}`;
     });
 
   //Get Cats
@@ -164,23 +169,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Button Events
         feedBtn[0].addEventListener("click", (e) => {
-          cat.feed(catElement);
+          if (utility.actionsAvailable > 0) {
+            cat.feed(catElement);
+            utility.useAction();
+          }
+
         });
 
         healBtn[0].addEventListener("click", (e) => {
-          cat.heal(catElement);
+          if (utility.actionsAvailable > 0) {
+            cat.heal(catElement);
+            utility.useAction();
+          }
         });
 
         petBtn[0].addEventListener("click", (e) => {
-          cat.pet(catElement);
+          if (utility.actionsAvailable > 0) {
+            cat.pet(catElement);
+            utility.useAction();
+          }
         });
 
         renameBtn[0].addEventListener("click", (e) => {
-          cat.rename(catElement);
+          if (utility.actionsAvailable > 0) {
+            cat.rename(catElement);
+            utility.useAction();
+          }
         });
-
-        // Rename Event
-
 
       });
     });
