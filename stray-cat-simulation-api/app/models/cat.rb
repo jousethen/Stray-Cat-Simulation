@@ -17,7 +17,7 @@ class Cat < ApplicationRecord
       end
     end
     
-    if (self.food == 0)
+    if (self.food == 0 && self.hp > 0)
       self.hp -= 1
     end
 
@@ -33,6 +33,8 @@ class Cat < ApplicationRecord
   end
 
   def getHungry()
-    self.food -= 1;
+    if (self.food > 0)
+      self.food -= 1;
+    end
   end
 end
