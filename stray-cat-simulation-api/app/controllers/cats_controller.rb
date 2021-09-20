@@ -7,6 +7,7 @@ class CatsController < ApplicationController
   def overnight
     Cat.overnightAdventures
   end
+
   def update
     cat = Cat.find_by_id(params[:id])
 

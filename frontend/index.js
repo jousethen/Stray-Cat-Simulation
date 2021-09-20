@@ -2,14 +2,27 @@ class Utility {
   constructor(baseURL) {
     this.baseURL = baseURL;
     this.catsURL = `${baseURL}/cats`;
+    this.userURL = `${baseURL}/user`;
     this.accessoriesURL = `${baseURL}/accessories`;
     this.catContainer = document.getElementById("cat-container");
     this.footer = document.querySelector('footer');
     this.nextDayBtn = document.getElementById("next-day");
     this.nextDayText = document.getElementById("next-day-img");
+    this.userActionsElement = document.getElementById("actions");
   }
 
   newDay() {
+    const catConfig = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: { start: "ona" }
+    };
+
+    fetch(`${utility.catsURL}/overnight-adventures`, catConfig);
+
     $("#next-day-img").fadeIn(3000, function () { location.reload(); });
   }
 
@@ -116,7 +129,16 @@ let todaysCats = [];
 
 /* ---------------------------------------------LOAD DOM---------------------------------------------*/
 document.addEventListener("DOMContentLoaded", () => {
+  //Get User
+  fetch(utility.userURL)
+    .then(function (response) {
+      return response.json()
+    }).then(function (json) {
+      console.log(json);
+      utility.userActionsElement.innerText = `Actions: ${json.actions}`
+    });
 
+  //Get Cats
   fetch(utility.catsURL)
     .then(function (response) {
       return response.json()
@@ -191,5 +213,8 @@ utility.nextDayBtn.addEventListener("click", (e) => {
 
   });
 
+
   utility.newDay();
+
+
 });
