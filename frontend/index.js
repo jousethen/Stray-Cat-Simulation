@@ -19,12 +19,18 @@ class Utility {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: { start: "ona" }
+      body: { actions: this.actionsAvailable }
     };
 
-    fetch(`${utility.catsURL}/overnight-adventures`, catConfig);
 
-    $("#next-day-img").fadeIn(3000, function () { location.reload(); });
+
+    $("#next-day-img").fadeIn(3000, function () {
+      setTimeout(() => {
+        fetch(`${utility.catsURL}/overnight-adventures`, catConfig);
+        location.reload();
+      }, 5000)
+
+    });
   }
 
   useAction() {

@@ -6,6 +6,9 @@ class CatsController < ApplicationController
 
   def overnight
     Cat.overnightAdventures
+    user = User.first;
+    user.actions = params[:action].to_i + 5;
+    user.save;
   end
 
   def update

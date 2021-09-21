@@ -35,4 +35,4 @@ Utility(baseUrl)
     - restartGame()
 
 Todo: 
---BRing data from JS to Rails
+- Allow actions to carry over into the next day
