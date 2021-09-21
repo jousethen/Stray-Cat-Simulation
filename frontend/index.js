@@ -19,14 +19,29 @@ class Utility {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: { actions: this.actionsAvailable }
+      body: JSON.stringify({
+        actions: this.actionsAvailable
+      })
+    };
+
+    const userConfig = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        actions: this.actionsAvailable
+      })
     };
 
 
-
     $("#next-day-img").fadeIn(3000, function () {
+
+      setTimeout(() => { fetch(`${utility.catsURL}/overnight-adventures`, catConfig), 5000 });
+
       setTimeout(() => {
-        fetch(`${utility.catsURL}/overnight-adventures`, catConfig);
+        fetch(`${utility.userURL}`, userConfig);
         location.reload();
       }, 5000)
 
