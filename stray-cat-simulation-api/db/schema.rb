@@ -14,10 +14,10 @@ ActiveRecord::Schema.define(version: 2021_09_23_022942) do
 
   create_table "accessories", force: :cascade do |t|
     t.integer "cat_id"
-    t.integer "toughness"
-    t.integer "health"
-    t.integer "food"
-    t.integer "affection"
+    t.integer "toughness", default: 0
+    t.integer "health", default: 0
+    t.integer "food", default: 0
+    t.integer "affection", default: 0
     t.string "name"
     t.string "is_discovered", default: "f"
     t.string "boolean", default: "f"
