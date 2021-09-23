@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_19_174733) do
+ActiveRecord::Schema.define(version: 2021_09_23_022942) do
+
+  create_table "accessories", force: :cascade do |t|
+    t.integer "cat_id"
+    t.integer "toughness"
+    t.integer "health"
+    t.integer "food"
+    t.integer "affection"
+    t.string "name"
+    t.string "is_discovered", default: "f"
+    t.string "boolean", default: "f"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cat_id"], name: "index_accessories_on_cat_id"
+  end
 
   create_table "cats", force: :cascade do |t|
     t.string "name", default: "No Name"
