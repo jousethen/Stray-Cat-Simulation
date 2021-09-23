@@ -3,7 +3,7 @@ class CreateAccessories < ActiveRecord::Migration[6.1]
     create_table :accessories do |t|
       t.belongs_to :cat
       t.integer :toughness, :default => 0
-      t.integer :health, :default => 0
+      t.integer :hp, :default => 0
       t.integer :food, :default => 0
       t.integer :affection, :default => 0
       t.string :name

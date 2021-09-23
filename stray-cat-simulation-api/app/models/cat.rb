@@ -4,9 +4,9 @@ class Cat < ApplicationRecord
     Cat.all.each do |cat|
       # Apply Accessory Logic
       cat.accessorize();
-      cat.takeDamage();
       cat.loseAffection();
       cat.getHungry();
+      cat.takeDamage();
 
       # Remove Additional Toughness so it does not stack
       cat.removeAdditionalToughness();
