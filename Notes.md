@@ -36,4 +36,5 @@ Utility(baseUrl)
 
 Todo: 
 - Figure out how to get player to choose accessory. 
-- Do ApplyAccessory Logic. 
+- New Button called inspect? Dig? That will bring up an accessory at random! Takes an action to use. 
+- When found, create popup window with list of cats.
