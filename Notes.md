@@ -35,4 +35,5 @@ Utility(baseUrl)
     - restartGame()
 
 Todo: 
-- Allow actions to carry over into the next day
+- Figure out how to get player to choose accessory. 
+- Do ApplyAccessory Logic. 
