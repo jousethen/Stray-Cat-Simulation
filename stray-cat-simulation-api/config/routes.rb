@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :accessories
   get '/cats' => 'cats#index'
   patch '/cats/:id' => 'cats#update'
   post '/cats/overnight-adventures' => 'cats#overnight'
