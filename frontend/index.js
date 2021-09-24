@@ -7,6 +7,7 @@ class Utility {
     this.catContainer = document.getElementById("cat-container");
     this.footer = document.querySelector('footer');
     this.nextDayBtn = document.getElementById("next-day");
+    this.giftBtn = document.getElementById("gift");
     this.nextDayText = document.getElementById("next-day-img");
     this.userActionsElement = document.getElementById("actions");
     this.actionsAvailable = 0;
@@ -150,6 +151,32 @@ class Cat {
   }
 }
 
+class Accessory {
+  constructor(id, name, hp, food, affection, toughness) {
+    this.id = id;
+    this.name = name;
+    this._hp = hp;
+    this._food = food;
+    this._affection = affection;
+    this._toughness = toughness;
+  }
+
+  get attributes() {
+    let listAttributes = [];
+    if (this._hp > 0) {
+      listAttributes.push(`<li>${this._hp}</li>`);
+    }
+    if (this._food > 0) {
+      listAttributes.push(`<li>${this._food}</li>`);
+    }
+    if (this._affection > 0) {
+      listAttributes.push(`<li>${this._affection}</li>`);
+    }
+    if (this._toughness > 0) {
+      listAttributes.push(`<li>${this._toughness}</li>`);
+    }
+  }
+}
 const utility = new Utility("http://localhost:3000");
 let todaysCats = [];
 
@@ -222,6 +249,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+utility.giftBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (utility.actionsAvailable != 0) {
+    utility.useAction();
+
+  }
+
+
+});
 
 utility.nextDayBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -249,8 +285,5 @@ utility.nextDayBtn.addEventListener("click", (e) => {
 
   });
 
-
   utility.newDay();
-
-
 });
