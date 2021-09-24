@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   get '/user' => 'users#show'
   post '/user' => 'users#carry_over'
+
+  get '/accessories' => 'accessories#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end 
