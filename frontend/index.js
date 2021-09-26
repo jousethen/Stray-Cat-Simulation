@@ -137,9 +137,10 @@ class Cat {
   }
 
   generateCard() {
+
     let html =
       `<div class="card">
-        <img src="../frontend/img/${this.image}" class="card-img-top" alt="${this.image}">
+        <img src="../frontend/img/${this.image}" class="card-img-top" alt="${this.image}" data-toggle="tooltip" data-placement="top" title="Accessories">
         <div class="card-body">
           <h5 class="card-title">${this.name} <button class="btn btn-secondary btn-sm rename"><i class="fas fa-pen-square"></i></button></h5>
           <p class="card-text">
@@ -200,6 +201,16 @@ class Accessory {
 
     return accArr;
   }
+
+  static loadtakenAccessories(accessories) {
+    let accArr = [];
+    accessories.forEach(a => {
+      if (a.cat_id != null)
+        accArr.push(new Accessory(a.id, a.name, a.hp, a.food, a.affection, a.toughness));
+    });
+
+    return accArr;
+  }
 }
 const utility = new Utility("http://localhost:3000");
 let todaysCats = [];
@@ -214,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
       utility.actionsAvailable = parseInt(json.actions);
       utility.userActionsElement.innerText = `Actions: ${utility.actionsAvailable}`;
     });
+
   //Get Accessories
   fetch(utility.accessoriesURL)
     .then(function (response) {
