@@ -10,6 +10,7 @@ class Utility {
     this.giftBtn = document.getElementById("gift");
     this.nextDayText = document.getElementById("next-day-img");
     this.userActionsElement = document.getElementById("actions");
+    this.modalContent = document.getElementById("modal-content")
     this.actionsAvailable = 0;
     this.accessories = [];
   }
@@ -180,6 +181,7 @@ class Accessory {
     if (this._toughness > 0) {
       listAttributes.push(`<li>${this._toughness}</li>`);
     }
+    return listAttributes;
   }
 
   static loadAllAccessories(accessories) {
@@ -276,7 +278,15 @@ utility.giftBtn.addEventListener("click", (e) => {
   if (utility.actionsAvailable != 0) {
     utility.useAction();
     let acc = utility.rollForAccessory();
-    console.log(acc);
+    if (acc) {
+
+    }
+    else {
+      let modalMessage = document.createElement("h3");
+      modalMessage.innerText = ""
+      utility.modalContent.innerHTML = `<h3>You look around for something to gift your new friends, but found nothing worth giving.</h3>`;
+      utility.modalContent.appendChild(modalMessage);
+    }
   }
 
 
