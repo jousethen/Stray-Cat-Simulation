@@ -10,15 +10,21 @@ class Utility {
     this.giftBtn = document.getElementById("gift");
     this.nextDayText = document.getElementById("next-day-img");
     this.userActionsElement = document.getElementById("actions");
-    this.modalBody = document.getElementById("modal-body")
+    this.modalBody = document.getElementById("modal-body");
+    this.modalFooter = document.getElementById("modal-footer");
     this.actionsAvailable = 0;
     this.accessories = [];
   }
 
   rollForAccessory() {
-    return this.accessories[Math.floor(Math.random() * 50)]
+    return this.accessories[Math.floor(Math.random() * 5)]
   }
-
+  displayAccessory(acc) {
+    this.modalBody.innerHTML = `<h4>${acc.name} Found!</h4>
+    <ul>
+    ${acc.attributes}
+    </ul>`;
+  }
   newDay() {
     const catConfig = {
       method: "POST",
@@ -170,16 +176,16 @@ class Accessory {
   get attributes() {
     let listAttributes = [];
     if (this._hp > 0) {
-      listAttributes.push(`<li>${this._hp}</li>`);
+      listAttributes.push(`<li>HP: +${this._hp}</li>`);
     }
     if (this._food > 0) {
-      listAttributes.push(`<li>${this._food}</li>`);
+      listAttributes.push(`<li>Food: +${this._food}</li>`);
     }
     if (this._affection > 0) {
-      listAttributes.push(`<li>${this._affection}</li>`);
+      listAttributes.push(`<li>Affection: +${this._affection}</li>`);
     }
     if (this._toughness > 0) {
-      listAttributes.push(`<li>${this._toughness}</li>`);
+      listAttributes.push(`<li>Toughness: +${this._toughness}</li>`);
     }
     return listAttributes;
   }
@@ -280,16 +286,11 @@ utility.giftBtn.addEventListener("click", (e) => {
     utility.useAction();
     let acc = utility.rollForAccessory();
     if (acc) {
-      let modalMessage = document.createElement("h3");
-      modalMessage.innerText = ""
-      utility.modalBody.innerHTML = `<h3>You look around for something to gift your new friends, but found nothing worth giving.</h3>`;
-      utility.modalBody.appendChild(modalMessage);
+      console.log(acc);
+      utility.displayAccessory(acc);
     }
     else {
-      let modalMessage = document.createElement("h3");
-      modalMessage.innerText = ""
-      utility.modalBody.innerHTML = `<h3>You look around for something to gift your new friends, but found nothing worth giving.</h3>`;
-      utility.modalBody.appendChild(modalMessage);
+      utility.modalBody.innerHTML = `You look around for something to gift your new friends, but found nothing worth giving.`;
     }
   }
 
