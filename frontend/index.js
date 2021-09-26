@@ -14,6 +14,10 @@ class Utility {
     this.accessories = [];
   }
 
+  rollForAccessory() {
+    return this.accessories[Math.floor(Math.random() * 50)]
+  }
+
   newDay() {
     const catConfig = {
       method: "POST",
@@ -206,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return response.json()
     }).then(function (json) {
       utility.accessories = Accessory.loadAllAccessories(json);
-      console.log(utility.accessories);
     });
 
 
@@ -272,7 +275,8 @@ utility.giftBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (utility.actionsAvailable != 0) {
     utility.useAction();
-
+    let acc = utility.rollForAccessory();
+    console.log(acc);
   }
 
 
