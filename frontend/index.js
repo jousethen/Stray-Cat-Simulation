@@ -288,6 +288,17 @@ utility.giftBtn.addEventListener("click", (e) => {
     if (acc) {
       console.log(acc);
       utility.displayAccessory(acc);
+
+      todaysCats.forEach(cat => {
+        const catBtn = document.createElement("button");
+        catBtn.className = "btn btn-primary";
+        catBtn.innerText = `Gift ${cat.name}`;
+        catBtn.setAttribute("data-dismiss", "modal");
+        catBtn.addEventListener("click", (e) => {
+          console.log(cat);
+        });
+        utility.modalFooter.appendChild(catBtn);
+      });
     }
     else {
       utility.modalBody.innerHTML = `You look around for something to gift your new friends, but found nothing worth giving.`;
