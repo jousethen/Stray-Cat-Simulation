@@ -174,18 +174,18 @@ class Accessory {
   }
 
   get attributes() {
-    let listAttributes = [];
+    let listAttributes = "";
     if (this._hp > 0) {
-      listAttributes.push(`<li>HP: +${this._hp}</li>`);
+      listAttributes += `<li>HP: +${this._hp}</li>`;
     }
     if (this._food > 0) {
-      listAttributes.push(`<li>Food: +${this._food}</li>`);
+      listAttributes += `<li>Food: +${this._food}</li>`;
     }
     if (this._affection > 0) {
-      listAttributes.push(`<li>Affection: +${this._affection}</li>`);
+      listAttributes += `<li>Affection: +${this._affection}</li>`;
     }
     if (this._toughness > 0) {
-      listAttributes.push(`<li>Toughness: +${this._toughness}</li>`);
+      listAttributes += `<li>Toughness: +${this._toughness}</li>`;
     }
     return listAttributes;
   }
