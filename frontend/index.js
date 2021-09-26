@@ -11,6 +11,7 @@ class Utility {
     this.nextDayText = document.getElementById("next-day-img");
     this.userActionsElement = document.getElementById("actions");
     this.actionsAvailable = 0;
+    this.accessories = [];
   }
 
   newDay() {
@@ -176,6 +177,15 @@ class Accessory {
       listAttributes.push(`<li>${this._toughness}</li>`);
     }
   }
+
+  static loadAllAccessories(accessories) {
+    let accArr = [];
+    accessories.forEach(a => {
+      accArr.push(new Accessory(a.id, a.name, a.hp, a.food, a.affection, a.toughness));
+    });
+
+    return accArr;
+  }
 }
 const utility = new Utility("http://localhost:3000");
 let todaysCats = [];
@@ -190,6 +200,15 @@ document.addEventListener("DOMContentLoaded", () => {
       utility.actionsAvailable = parseInt(json.actions);
       utility.userActionsElement.innerText = `Actions: ${utility.actionsAvailable}`;
     });
+  //Get Accessories
+  fetch(utility.accessoriesURL)
+    .then(function (response) {
+      return response.json()
+    }).then(function (json) {
+      utility.accessories = Accessory.loadAllAccessories(json);
+      console.log(utility.accessories);
+    });
+
 
   //Get Cats
   fetch(utility.catsURL)
