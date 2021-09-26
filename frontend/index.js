@@ -187,7 +187,8 @@ class Accessory {
   static loadAllAccessories(accessories) {
     let accArr = [];
     accessories.forEach(a => {
-      accArr.push(new Accessory(a.id, a.name, a.hp, a.food, a.affection, a.toughness));
+      if (a.cat_id == null)
+        accArr.push(new Accessory(a.id, a.name, a.hp, a.food, a.affection, a.toughness));
     });
 
     return accArr;
@@ -279,7 +280,10 @@ utility.giftBtn.addEventListener("click", (e) => {
     utility.useAction();
     let acc = utility.rollForAccessory();
     if (acc) {
-
+      let modalMessage = document.createElement("h3");
+      modalMessage.innerText = ""
+      utility.modalBody.innerHTML = `<h3>You look around for something to gift your new friends, but found nothing worth giving.</h3>`;
+      utility.modalBody.appendChild(modalMessage);
     }
     else {
       let modalMessage = document.createElement("h3");
