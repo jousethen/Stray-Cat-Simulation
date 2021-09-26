@@ -10,7 +10,7 @@ class Utility {
     this.giftBtn = document.getElementById("gift");
     this.nextDayText = document.getElementById("next-day-img");
     this.userActionsElement = document.getElementById("actions");
-    this.modalContent = document.getElementById("modal-content")
+    this.modalBody = document.getElementById("modal-body")
     this.actionsAvailable = 0;
     this.accessories = [];
   }
@@ -284,8 +284,8 @@ utility.giftBtn.addEventListener("click", (e) => {
     else {
       let modalMessage = document.createElement("h3");
       modalMessage.innerText = ""
-      utility.modalContent.innerHTML = `<h3>You look around for something to gift your new friends, but found nothing worth giving.</h3>`;
-      utility.modalContent.appendChild(modalMessage);
+      utility.modalBody.innerHTML = `<h3>You look around for something to gift your new friends, but found nothing worth giving.</h3>`;
+      utility.modalBody.appendChild(modalMessage);
     }
   }
 
