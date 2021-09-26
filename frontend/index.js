@@ -17,7 +17,7 @@ class Utility {
   }
 
   rollForAccessory() {
-    return this.accessories[Math.floor(Math.random() * 50)]
+    return this.accessories[Math.floor(Math.random() * 5)]
   }
   displayAccessory(acc) {
     this.modalBody.innerHTML = `<h4>${acc.name} Found!</h4>
@@ -312,6 +312,7 @@ utility.giftBtn.addEventListener("click", (e) => {
           };
 
           fetch(`${utility.accessoriesURL}/${acc.id}`, accessoryConfig);
+          utility.giftBtn.innerHTML = "";
         });
         utility.modalFooter.appendChild(catBtn);
       });
