@@ -295,7 +295,21 @@ utility.giftBtn.addEventListener("click", (e) => {
         catBtn.innerText = `Gift ${cat.name}`;
         catBtn.setAttribute("data-dismiss", "modal");
         catBtn.addEventListener("click", (e) => {
-          console.log(cat);
+          const accessoryData = {
+            id: acc.id,
+            cat_id: cat.id
+          };
+
+          const accessoryConfig = {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+            },
+            body: JSON.stringify(accessoryData)
+          };
+
+          fetch(`${utility.accessoriesURL}/${acc.id}`, accessoryConfig);
         });
         utility.modalFooter.appendChild(catBtn);
       });
