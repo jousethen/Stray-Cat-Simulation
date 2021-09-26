@@ -97,7 +97,7 @@ class Cat {
   }
 
   heal(catElement) {
-    this.hp += 3;
+    this.hp += 5;
     this.food += 1;
     this.affection += 1;
     Utility.constraint(this);
