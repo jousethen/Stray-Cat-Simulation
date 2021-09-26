@@ -17,7 +17,7 @@ class Utility {
   }
 
   rollForAccessory() {
-    return this.accessories[Math.floor(Math.random() * 5)]
+    return this.accessories[Math.floor(Math.random() * 50)]
   }
   displayAccessory(acc) {
     this.modalBody.innerHTML = `<h4>${acc.name} Found!</h4>
@@ -78,13 +78,14 @@ class Utility {
 }
 
 class Cat {
-  constructor(id, name, hp, food, affection, toughness) {
+  constructor(id, name, hp, food, affection, toughness, image) {
     this.id = id;
     this.name = name;
     this.hp = hp;
     this.food = food;
     this.affection = affection;
     this._toughness = toughness;
+    this.image = image;
   }
 
   feed(catElement) {
@@ -138,7 +139,7 @@ class Cat {
   generateCard() {
     let html =
       `<div class="card">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/c/cd/Wildlife_Sheriff_Cat_Icon.png/revision/latest?cb=20210316084923" class="card-img-top" alt="...">
+        <img src="../frontend/img/${this.image}" class="card-img-top" alt="${this.image}">
         <div class="card-body">
           <h5 class="card-title">${this.name} <button class="btn btn-secondary btn-sm rename"><i class="fas fa-pen-square"></i></button></h5>
           <p class="card-text">
@@ -158,7 +159,7 @@ class Cat {
       return cat.affection >= Math.floor(Math.random() * 11)
     });
     return catsArr.map(cat => {
-      return new Cat(cat.id, cat.name, cat.hp, cat.food, cat.affection, cat.toughness);
+      return new Cat(cat.id, cat.name, cat.hp, cat.food, cat.affection, cat.toughness, cat.image);
     });
   }
 }
@@ -280,6 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
 utility.giftBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (utility.actionsAvailable != 0) {
@@ -317,6 +319,9 @@ utility.giftBtn.addEventListener("click", (e) => {
     else {
       utility.modalBody.innerHTML = `You look around for something to gift your new friends, but found nothing worth giving.`;
     }
+  }
+  else {
+    utility.modalBody.innerHTML = `NO ACTIONS LEFT`;
   }
 
 
