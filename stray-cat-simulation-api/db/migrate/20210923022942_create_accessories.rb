@@ -6,8 +6,8 @@ class CreateAccessories < ActiveRecord::Migration[6.1]
       t.integer :hp, :default => 0
       t.integer :food, :default => 0
       t.integer :affection, :default => 0
-      t.string :name
-      t.string :is_discovered, :boolean,:default =>false
+      t.text :name
+      t.text :is_discovered, :boolean,:default =>false
       t.timestamps
     end
   end

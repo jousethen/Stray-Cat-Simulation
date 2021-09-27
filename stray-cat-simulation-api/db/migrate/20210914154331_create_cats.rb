@@ -1,7 +1,7 @@
 class CreateCats < ActiveRecord::Migration[6.1]
   def change
     create_table :cats do |t|
-      t.string :name, :default => "No Name"
+      t.text :name, :default => "No Name"
       t.integer :hp, :default => 10
       t.integer :hunger, :default => 10
       t.integer :affection, :default => 1
