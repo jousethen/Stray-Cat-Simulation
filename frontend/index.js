@@ -14,10 +14,11 @@ class Utility {
     this.modalFooter = document.getElementById("modal-footer");
     this.actionsAvailable = 0;
     this.accessories = [];
+    this.takenAccessories = [];
   }
 
   rollForAccessory() {
-    return this.accessories[Math.floor(Math.random() * 5)]
+    return this.accessories[Math.floor(Math.random() * 30)]
   }
   displayAccessory(acc) {
     this.modalBody.innerHTML = `<h4>${acc.name} Found!</h4>
@@ -140,7 +141,7 @@ class Cat {
 
     let html =
       `<div class="card">
-        <img src="../frontend/img/${this.image}" class="card-img-top" alt="${this.image}" data-toggle="tooltip" data-placement="top" title="Accessories">
+        <img src="../frontend/img/${this.image}" class="card-img-top" alt="${this.image}">
         <div class="card-body">
           <h5 class="card-title">${this.name} <button class="btn btn-secondary btn-sm rename"><i class="fas fa-pen-square"></i></button></h5>
           <p class="card-text">
@@ -166,13 +167,14 @@ class Cat {
 }
 
 class Accessory {
-  constructor(id, name, hp, food, affection, toughness) {
+  constructor(id, name, hp, food, affection, toughness, cat_id) {
     this.id = id;
     this.name = name;
     this._hp = hp;
     this._food = food;
     this._affection = affection;
     this._toughness = toughness;
+    this.cat_id = cat_id
   }
 
   get attributes() {
@@ -196,7 +198,7 @@ class Accessory {
     let accArr = [];
     accessories.forEach(a => {
       if (a.cat_id == null)
-        accArr.push(new Accessory(a.id, a.name, a.hp, a.food, a.affection, a.toughness));
+        accArr.push(new Accessory(a.id, a.name, a.hp, a.food, a.affection, a.toughness, a.cat_id));
     });
 
     return accArr;
@@ -206,7 +208,7 @@ class Accessory {
     let accArr = [];
     accessories.forEach(a => {
       if (a.cat_id != null)
-        accArr.push(new Accessory(a.id, a.name, a.hp, a.food, a.affection, a.toughness));
+        accArr.push(new Accessory(a.id, a.name, a.hp, a.food, a.affection, a.toughness, a.cat_id));
     });
 
     return accArr;
@@ -232,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return response.json()
     }).then(function (json) {
       utility.accessories = Accessory.loadAllAccessories(json);
+      utility.takenAccessories = Accessory.loadtakenAccessories(json);
     });
 
 
@@ -257,6 +260,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const petBtn = catElement.getElementsByClassName("pet");
         const healBtn = catElement.getElementsByClassName("heal");
         const renameBtn = catElement.getElementsByClassName("rename");
+
+        //Add Accessory ToolTip
+
+        let catAcc = utility.takenAccessories.filter(a => { return a.cat_id == cat.id });
+
+
+        if (catAcc.length != 0) {
+          catElement.setAttribute("data-toggle", "tooltip");
+          catElement.setAttribute("data-placement", "top");
+          let catAccStr = "";
+
+          catAcc.forEach(a => {
+            catAccStr += `${a.name} / `
+          });
+
+          catElement.setAttribute("title", catAccStr);
+        }
+        else {
+          catElement.setAttribute("title", "No Accessories");
+        }
         utility.catContainer.appendChild(catElement);
 
         // Button Events
