@@ -18,7 +18,7 @@ class Utility {
   }
 
   rollForAccessory() {
-    return this.accessories[Math.floor(Math.random() * 30)]
+    return this.accessories[Math.floor(Math.random() * 4)]
   }
   displayAccessory(acc) {
     this.modalBody.innerHTML = `<h4>${acc.name} Found!</h4>
@@ -263,7 +263,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //Add Accessory ToolTip
 
-        let catAcc = utility.takenAccessories.filter(a => { return a.cat_id == cat.id });
+        let catAcc = [];
+        utility.takenAccessories.forEach(a => {
+          if (a.cat_id == cat.id) {
+            catAcc.push(a)
+          }
+        });
 
 
         if (catAcc.length != 0) {
