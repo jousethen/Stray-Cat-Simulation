@@ -32,8 +32,8 @@ class Cat < ApplicationRecord
   end
 
   def loseAffection()
-    if (self.affection > 1)
-      self.affection -= 1
+    if (self.affection > 2)
+      self.affection -= 2
     end
   end
 

@@ -18,7 +18,7 @@ class Utility {
   }
 
   rollForAccessory() {
-    return this.accessories[Math.floor(Math.random() * 4)]
+    return this.accessories[Math.floor(Math.random() * 30)]
   }
   displayAccessory(acc) {
     this.modalBody.innerHTML = `<h4>${acc.name} Found!</h4>
@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
       todaysCats.forEach(cat => {
         let catElement = document.createElement("div");
         catElement.className = "col";
-        catElement.style = "max - width: 240px;"
+        catElement.style = "max - width: 100px;"
         catElement.id = `cat-${cat.id}`
         catElement.innerHTML = cat.generateCard();
 

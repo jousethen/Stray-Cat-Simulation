@@ -46,3 +46,7 @@
 #gift > button.btn {
   font-size: 3.0rem;
 }
+
+.card {
+  width: 75%;
+}
