@@ -288,6 +288,9 @@ document.addEventListener("DOMContentLoaded", () => {
             cat.feed(catElement);
             utility.useAction();
           }
+          else {
+            alert("No Actions Left. Go on to the Next Day")
+          }
 
         });
 
@@ -296,6 +299,9 @@ document.addEventListener("DOMContentLoaded", () => {
             cat.heal(catElement);
             utility.useAction();
           }
+          else {
+            alert("No Actions Left. Go on to the Next Day")
+          }
         });
 
         petBtn[0].addEventListener("click", (e) => {
@@ -303,13 +309,13 @@ document.addEventListener("DOMContentLoaded", () => {
             cat.pet(catElement);
             utility.useAction();
           }
+          else {
+            alert("No Actions Left. Go on to the Next Day")
+          }
         });
 
         renameBtn[0].addEventListener("click", (e) => {
-          if (utility.actionsAvailable > 0) {
-            cat.rename(catElement);
-            utility.useAction();
-          }
+          cat.rename(catElement);
         });
 
       });
