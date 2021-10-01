@@ -12,6 +12,9 @@ class Utility {
     this.userActionsElement = document.getElementById("actions");
     this.modalBody = document.getElementById("modal-body");
     this.modalFooter = document.getElementById("modal-footer");
+    this.nameForm = document.getElementById("user-comments-form");
+    this.nameField = document.getElementById("user-comments");
+    this.nameFieldBtn = document.getElementById("name-form-submit");
     this.actionsAvailable = 0;
     this.accessories = [];
     this.takenAccessories = [];
@@ -401,4 +404,13 @@ utility.nextDayBtn.addEventListener("click", (e) => {
   });
 
   utility.newDay();
+});
+
+utility.nameFieldBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  let value = document.getElementById("user-comments-input");
+  utility.nameField.innerText = value.value
+  utility.nameForm.innerHTML = "";
+
+  //Writeback data for all cats that showed up today
 });

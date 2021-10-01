@@ -1,5 +1,6 @@
 class Cat < ApplicationRecord
   has_many :accessories
+  
   def self.overnightAdventures
     Cat.all.each do |cat|
       # Apply Accessory Logic
