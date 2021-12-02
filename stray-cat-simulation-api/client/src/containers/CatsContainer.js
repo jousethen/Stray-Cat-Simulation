@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-
+import { fetchAllCats } from '../actions/cat_actions';
 
 class CatsContainer extends Component {
   constructor() {
@@ -25,7 +25,7 @@ class CatsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-
+    cats: state.cats
   };
 };
 
