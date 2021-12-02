@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchTodaysCats } from '../actions/cat_actions';
+import CatCard from '../components/CatCard';
 
 class CatsContainer extends Component {
   constructor() {
@@ -14,18 +15,33 @@ class CatsContainer extends Component {
     this.props.fetchTodaysCats();
   }
 
-  render() {
-    return (
-      <div className="cats_container">
+  renderCatCards = () => {
+    return this.props.cats.map((cat) => { return (<CatCard cat={cat} key={cat.id} />) })
+  }
 
-      </div>
-    )
+  render() {
+    console.log(this.props)
+    if (this.props.cats.length > 0) {
+      return (
+        <div className="cats_container">
+          {this.renderCatCards()}
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className="cats_container">
+          NO CATS
+        </div>
+      )
+    }
   }
 }
 
+
 const mapStateToProps = (state) => {
   return {
-    cats: state.cats
+    cats: state.cats.cats
   };
 };
 
