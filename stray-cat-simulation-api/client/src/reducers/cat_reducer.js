@@ -1,4 +1,5 @@
 export const catReducer = (state = { cats: [], loading: false }, action) => {
+  console.log(action)
   switch (action.type) {
     case "LOADING_CATS":
       return {
@@ -9,7 +10,7 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
     case "LOAD_CATS_SUCCESS":
       return {
         ...state,
-        track: action.cats,
+        cats: action.cats,
         loading: false,
       }
     default:
