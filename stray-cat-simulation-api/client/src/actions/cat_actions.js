@@ -1,6 +1,4 @@
 export const fetchAllCats = () => {
-  let user;
-
   fetch('/api/cats', {
     method: 'GET', headers: {
       'Accept': 'application/json',
@@ -12,5 +10,9 @@ export const fetchAllCats = () => {
     })
     .then((json) => {
       console.log(json);
+      let cats = {
+        cat: "cat"
+      }
+      return cats
     });
 }

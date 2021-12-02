@@ -1,4 +1,4 @@
-class CatsController < ApplicationController
+class Api::CatsController < ApplicationController
   def index
     cats = Cat.all
     render json: cats
