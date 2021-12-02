@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { fetchAllCats } from '../actions/cat_actions';
+import { fetchTodaysCats } from '../actions/cat_actions';
 
 class CatsContainer extends Component {
   constructor() {
@@ -11,7 +11,7 @@ class CatsContainer extends Component {
   }
   componentDidMount() {
     //Fetch All cats
-    this.props.fetchAllCats();
+    this.props.fetchTodaysCats();
   }
 
   render() {
@@ -31,8 +31,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllCats: () => {
-      dispatch(fetchAllCats());
+    fetchTodaysCats: () => {
+      dispatch(fetchTodaysCats());
     },
   }
 }
