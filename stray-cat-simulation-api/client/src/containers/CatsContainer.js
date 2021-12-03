@@ -2,21 +2,40 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchTodaysCats } from '../actions/cat_actions';
 import CatCard from '../components/CatCard';
+import cuid from 'cuid';
+export const cuidFn = cuid;
 
 class CatsContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      cats: []
+    }
+  }
   componentDidMount() {
     //Fetch All cats
     this.props.fetchTodaysCats();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.cats !== this.props.cats) {
+      this.setState({
+        cats: this.props.cats
+      })
+    }
+  }
   renderCatCards = () => {
-    return this.props.cats.map((cat) => { return (<CatCard cat={cat} key={cat.id} handleActionClick={this.handleActionClick} />) })
+    return this.state.cats.map((cat) => { return (<CatCard cat={cat} key={cuidFn()} handleActionClick={this.handleActionClick} />) })
   }
 
   handleActionClick = (catId, action) => {
 
     switch (action) {
       case "feed": this.props.feedCat(catId);
+        break;
+      case "heal": this.props.healCat(catId);
+        break;
+      case "pet": this.props.petCat(catId);
         break;
       default:
     }
@@ -44,7 +63,8 @@ class CatsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cats: state.cats.cats
+    cats: state.cats.cats,
+    loading: state.cats.loading
   };
 };
 

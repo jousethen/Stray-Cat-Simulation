@@ -20,7 +20,11 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
         return cat.id === action.catId
       });
       state.cats[catIndex].food = state.cats[catIndex].food + 1;
-      return state
+      return {
+        ...state,
+        cats: [...state.cats],
+        loading: false,
+      }
 
     case "HEAL_CAT":
       catIndex = state.cats.findIndex((cat) => {
@@ -28,14 +32,22 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
       });
       state.cats[catIndex].hp = state.cats[catIndex].hp + 1;
 
-      return state
+      return {
+        ...state,
+        cats: [...state.cats],
+        loading: false,
+      }
 
     case "PET_CAT":
       catIndex = state.cats.findIndex((cat) => {
         return cat.id === action.catId
       });
       state.cats[catIndex].affection = state.cats[catIndex].affection + 1;
-      return state
+      return {
+        ...state,
+        cats: [...state.cats],
+        loading: false,
+      }
 
     default:
       return state;
