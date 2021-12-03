@@ -1,4 +1,5 @@
 import React from 'react';
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 const CatCard = (props) => {
   let imageUrl = `images/${props.cat.image}`;
@@ -8,7 +9,10 @@ const CatCard = (props) => {
       <img
         src={imageUrl}
         alt={props.cat.image} />
-      <div className="card-content">{props.cat.name}</div>
+      <div className="cat-name">{props.cat.name}</div>
+      <div className="cat-hp">
+        <ProgressBar now={60} />
+      </div>
 
     </div>
   )
