@@ -13,8 +13,26 @@
   transition: 0.3s;
 }
 
-.action{
+.btn-primary{
   margin-top: 10px;
   margin-right: 2px;
+  background-color: blue;
 }
 
+
+.cat-health .progress-bar {
+  background-color: crimson;
+}
+
+.cat-food .progress-bar {
+  background-color: orange;
+}
+
+.cat-affection .progress-bar {
+  background-color: purple;
+}
+
+.cat-name {
+  font-size: large;
+  font-weight: bold;
+}
