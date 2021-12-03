@@ -6,12 +6,7 @@ import cuid from 'cuid';
 export const cuidFn = cuid;
 
 class CatsContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cats: []
-    }
-  }
+
   componentDidMount() {
     //Fetch All cats
     this.props.fetchTodaysCats();
@@ -23,14 +18,18 @@ class CatsContainer extends Component {
 
   handleActionClick = (catId, action) => {
 
-    switch (action) {
-      case "feed": this.props.feedCat(catId);
-        break;
-      case "heal": this.props.healCat(catId);
-        break;
-      case "pet": this.props.petCat(catId);
-        break;
-      default:
+    if (this.props.actions > 0) {
+      switch (action) {
+        case "feed": this.props.feedCat(catId);
+          break;
+        case "heal": this.props.healCat(catId);
+          break;
+        case "pet": this.props.petCat(catId);
+          break;
+        default:
+      }
+
+      this.props.useAction();
     }
 
   }
@@ -39,7 +38,7 @@ class CatsContainer extends Component {
     if (this.props.cats.length > 0) {
       return (
         <div className="cats-container">
-          {this.renderCatCards()}
+          {this.props.actions}{this.renderCatCards()}
         </div>
       )
     }
@@ -58,7 +57,7 @@ const mapStateToProps = (state) => {
   return {
     cats: state.cats.cats,
     loading: state.cats.loading,
-    actions: state.cats.actions
+    actions: state.user.actions
   };
 };
 
@@ -78,6 +77,10 @@ const mapDispatchToProps = (dispatch) => {
 
     petCat: (catId) => {
       dispatch({ type: "PET_CAT", catId })
+    },
+
+    useAction: () => {
+      dispatch({ type: "USE_ACTION" })
     }
   }
 }

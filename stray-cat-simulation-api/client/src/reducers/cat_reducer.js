@@ -1,4 +1,4 @@
-export const catReducer = (state = { cats: [], loading: false, actions: 5 }, action) => {
+export const catReducer = (state = { cats: [], loading: false }, action) => {
   console.log(action);
   let catIndex;
   switch (action.type) {
@@ -7,7 +7,6 @@ export const catReducer = (state = { cats: [], loading: false, actions: 5 }, act
         ...state,
         cats: state.cats,
         loading: true,
-        actions: state.actions
       };
     case "LOAD_CATS_SUCCESS":
       return {
@@ -27,7 +26,6 @@ export const catReducer = (state = { cats: [], loading: false, actions: 5 }, act
         ...state,
         cats: [...state.cats],
         loading: false,
-        actions: state.actions - 1
       }
 
     case "HEAL_CAT":
@@ -41,7 +39,6 @@ export const catReducer = (state = { cats: [], loading: false, actions: 5 }, act
         ...state,
         cats: [...state.cats],
         loading: false,
-        actions: state.actions - 1
       }
 
     case "PET_CAT":
@@ -55,7 +52,6 @@ export const catReducer = (state = { cats: [], loading: false, actions: 5 }, act
         ...state,
         cats: [...state.cats],
         loading: false,
-        actions: state.actions - 1
       }
 
     default:
