@@ -17,15 +17,8 @@ class CatsContainer extends Component {
     this.props.fetchTodaysCats();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.cats !== this.props.cats) {
-      this.setState({
-        cats: this.props.cats
-      })
-    }
-  }
   renderCatCards = () => {
-    return this.state.cats.map((cat) => { return (<CatCard cat={cat} key={cuidFn()} handleActionClick={this.handleActionClick} />) })
+    return this.props.cats.map((cat) => { return (<CatCard cat={cat} key={cuidFn()} handleActionClick={this.handleActionClick} />) })
   }
 
   handleActionClick = (catId, action) => {

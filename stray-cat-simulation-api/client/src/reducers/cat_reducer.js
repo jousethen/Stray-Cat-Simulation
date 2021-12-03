@@ -19,7 +19,9 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
       catIndex = state.cats.findIndex((cat) => {
         return cat.id === action.catId
       });
-      state.cats[catIndex].food = state.cats[catIndex].food + 1;
+
+      state.cats[catIndex] = feed(state.cats[catIndex])
+
       return {
         ...state,
         cats: [...state.cats],
@@ -30,7 +32,8 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
       catIndex = state.cats.findIndex((cat) => {
         return cat.id === action.catId
       });
-      state.cats[catIndex].hp = state.cats[catIndex].hp + 1;
+
+      state.cats[catIndex] = heal(state.cats[catIndex])
 
       return {
         ...state,
@@ -42,7 +45,9 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
       catIndex = state.cats.findIndex((cat) => {
         return cat.id === action.catId
       });
-      state.cats[catIndex].affection = state.cats[catIndex].affection + 1;
+
+      state.cats[catIndex] = pet(state.cats[catIndex])
+
       return {
         ...state,
         cats: [...state.cats],
@@ -53,3 +58,39 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
       return state;
   }
 };
+
+//*--------UTILITY-------------*//
+function feed(cat) {
+  cat.food += 5;
+  cat.affection += 1;
+  cat.hp += 1;
+
+  if (cat.hp > 10) { cat.hp = 10 }
+  if (cat.food > 10) { cat.food = 10 }
+  if (cat.affection > 10) { cat.affection = 10 }
+
+  return cat;
+}
+
+function heal(cat) {
+  cat.hp += 5;
+  cat.food += 1;
+  cat.affection += 1;
+
+  if (cat.hp > 10) { cat.hp = 10 }
+  if (cat.food > 10) { cat.food = 10 }
+  if (cat.affection > 10) { cat.affection = 10 }
+
+  return cat;
+}
+
+function pet(cat) {
+  cat.affection += 3;
+  cat.hp += 1;
+
+  if (cat.hp > 10) { cat.hp = 10 }
+  if (cat.food > 10) { cat.food = 10 }
+  if (cat.affection > 10) { cat.affection = 10 }
+
+  return cat;
+}
