@@ -17,6 +17,8 @@ class CatsContainer extends Component {
 
     switch (action) {
       case "feed": this.props.feedCat(catId);
+        break;
+      default:
     }
 
   }
@@ -54,6 +56,14 @@ const mapDispatchToProps = (dispatch) => {
 
     feedCat: (catId) => {
       dispatch({ type: "FEED_CAT", catId })
+    },
+
+    healCat: (catId) => {
+      dispatch({ type: "HEAL_CAT", catId })
+    },
+
+    petCat: (catId) => {
+      dispatch({ type: "PET_CAT", catId })
     }
   }
 }
