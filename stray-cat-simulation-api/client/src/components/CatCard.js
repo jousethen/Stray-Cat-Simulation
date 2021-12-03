@@ -7,8 +7,9 @@ const CatCard = (props) => {
     <div className="cat-card">
       <img
         src={imageUrl}
-        className="card-img-top"
         alt={props.cat.image} />
+      <div className="card-content">{props.cat.name}</div>
+
     </div>
   )
 }

@@ -23,14 +23,14 @@ class CatsContainer extends Component {
     console.log(this.props)
     if (this.props.cats.length > 0) {
       return (
-        <div className="cats_container">
+        <div className="cats-container">
           {this.renderCatCards()}
         </div>
       )
     }
     else {
       return (
-        <div className="cats_container">
+        <div className="cats-container">
           NO CATS
         </div>
       )

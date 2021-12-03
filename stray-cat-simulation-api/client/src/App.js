@@ -3,9 +3,9 @@ import CatsContainer from './containers/CatsContainer';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <CatsContainer />
-    </div>
+    </>
   );
 }
 
