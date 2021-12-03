@@ -16,7 +16,11 @@ class CatsContainer extends Component {
   }
 
   renderCatCards = () => {
-    return this.props.cats.map((cat) => { return (<CatCard cat={cat} key={cat.id} />) })
+    return this.props.cats.map((cat) => { return (<CatCard cat={cat} key={cat.id} handleActionClick={this.handleActionClick} />) })
+  }
+
+  handleActionClick = (catId, action) => {
+
   }
 
   render() {

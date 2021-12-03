@@ -23,9 +23,9 @@ const CatCard = (props) => {
         <ProgressBar min="0" max="10" now={props.cat.hp} />
       </div>
 
-      <Button className="btn-heal">Heal</Button>
-      <Button className="btn-feed">Feed</Button>
-      <Button className="btn-pet">Pet</Button>
+      <Button className="btn-heal" onClick={(event) => { props.handleActionClick(props.cat.id, "heal") }}>Heal</Button>
+      <Button className="btn-feed" onClick={(event) => { props.handleActionClick(props.cat.id, "feed") }}>Feed</Button>
+      <Button className="btn-pet" onClick={(event) => { props.handleActionClick(props.cat.id, "pet") }}>Pet</Button>
     </div>
   )
 }
