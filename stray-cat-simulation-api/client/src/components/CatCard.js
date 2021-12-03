@@ -16,11 +16,11 @@ const CatCard = (props) => {
       </div>
       <div className="cat-food">
         Food: {props.cat.food}/10
-        <ProgressBar min="0" max="10" now={props.cat.hp} />
+        <ProgressBar min="0" max="10" now={props.cat.food} />
       </div>
       <div className="cat-affection">
         Affection: {props.cat.affection}/10
-        <ProgressBar min="0" max="10" now={props.cat.hp} />
+        <ProgressBar min="0" max="10" now={props.cat.affection} />
       </div>
 
       <Button className="btn-heal" onClick={(event) => { props.handleActionClick(props.cat.id, "heal") }}>Heal</Button>
