@@ -57,7 +57,8 @@ class CatsContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     cats: state.cats.cats,
-    loading: state.cats.loading
+    loading: state.cats.loading,
+    actions: state.cats.actions
   };
 };
 
