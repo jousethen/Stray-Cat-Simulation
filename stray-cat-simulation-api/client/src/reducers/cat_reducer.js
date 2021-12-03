@@ -15,10 +15,11 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
       }
     case "FEED_CAT":
       let catIndex = state.cats.findIndex((cat) => {
-        return cat.id === action.id
+        return cat.id === action.catId
       });
 
-      console.log(state.cats)
+      //state.cats[catIndex].food = state.cats[catIndex].food + 1;
+
       return state
     default:
       return state;

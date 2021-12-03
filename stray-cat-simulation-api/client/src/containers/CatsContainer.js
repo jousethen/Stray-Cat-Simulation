@@ -14,7 +14,11 @@ class CatsContainer extends Component {
   }
 
   handleActionClick = (catId, action) => {
-    console.log(this.state)
+
+    switch (action) {
+      case "feed": this.props.feedCat(catId);
+    }
+
   }
 
   render() {
@@ -47,6 +51,10 @@ const mapDispatchToProps = (dispatch) => {
     fetchTodaysCats: () => {
       dispatch(fetchTodaysCats());
     },
+
+    feedCat: (catId) => {
+      dispatch({ type: "FEED_CAT", catId })
+    }
   }
 }
 
