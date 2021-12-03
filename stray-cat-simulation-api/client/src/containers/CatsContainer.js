@@ -4,12 +4,6 @@ import { fetchTodaysCats } from '../actions/cat_actions';
 import CatCard from '../components/CatCard';
 
 class CatsContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cats: []
-    }
-  }
   componentDidMount() {
     //Fetch All cats
     this.props.fetchTodaysCats();
@@ -20,11 +14,10 @@ class CatsContainer extends Component {
   }
 
   handleActionClick = (catId, action) => {
-
+    console.log(this.state)
   }
 
   render() {
-    console.log(this.props)
     if (this.props.cats.length > 0) {
       return (
         <div className="cats-container">

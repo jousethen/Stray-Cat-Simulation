@@ -11,7 +11,6 @@ export const fetchTodaysCats = () => {
         return response.json();
       })
       .then((json) => {
-        console.log(json);
         let cats = json.filter(cat => {
           return cat.affection >= Math.floor(Math.random() * 11)
         });
@@ -20,3 +19,4 @@ export const fetchTodaysCats = () => {
       });
   };
 }
+

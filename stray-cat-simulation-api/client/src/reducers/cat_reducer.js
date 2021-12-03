@@ -13,6 +13,13 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
         cats: action.cats,
         loading: false,
       }
+    case "FEED_CAT":
+      let catIndex = state.cats.findIndex((cat) => {
+        return cat.id === action.id
+      });
+
+      console.log(state.cats)
+      return state
     default:
       return state;
   }
