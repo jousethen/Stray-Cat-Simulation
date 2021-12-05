@@ -72,7 +72,7 @@ export const proceedToNextDay = (cats, actionsAvailable) => {
 
     //Save Unused Actions
     fetch(`/api/user`, userConfig).then(() => {
-      dispatch({ type: "LOADED_NEXT_DAY" });
+      dispatch({ type: "WAIT_TO_CONTINUE" });
     });
 
 
