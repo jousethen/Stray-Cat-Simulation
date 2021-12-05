@@ -56,6 +56,12 @@
   margin: 10px;
 }
 
+.footer h1 {
+  color: white;
+  margin-top: 25px
+  
+}
+
 #next-day span{
   z-index: 1;
   position: fixed;

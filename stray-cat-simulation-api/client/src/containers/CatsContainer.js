@@ -69,7 +69,7 @@ class CatsContainer extends Component {
       return (
         <div className="cats-container">
 
-          {this.props.actions}{this.renderCatCards()}
+          {this.renderCatCards()}
           <Modal
             size="sm"
             show={this.state.showModal}
@@ -81,7 +81,7 @@ class CatsContainer extends Component {
               </Modal.Title>
             </Modal.Header>
           </Modal>
-          <Footer nextDayHandler={this.nextDayHandler} />
+          <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} />
         </div>
       )
     }
@@ -89,7 +89,7 @@ class CatsContainer extends Component {
       return (
         <div className="cats-container">
           NO CATS
-          <Footer nextDayHandler={this.nextDayHandler} />
+          <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} />
         </div>
       )
     }
