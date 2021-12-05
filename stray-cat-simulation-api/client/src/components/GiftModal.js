@@ -31,15 +31,12 @@ class GiftModal extends Component {
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    accessories: state.accessories.accessories
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    useAction: () => {
+      dispatch({ type: "USE_ACTION" })
+    },
 
   }
 }

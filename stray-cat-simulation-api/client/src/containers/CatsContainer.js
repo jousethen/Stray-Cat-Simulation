@@ -41,6 +41,11 @@ class CatsContainer extends Component {
       showActionModal: false,
       showGiftModal: false
     })
+
+    //Remove an Action if turning off Gift Modal 
+    if (this.props.actions > 0) {
+      this.props.useAction();
+    }
   }
 
   handleActionClick = (catId, action) => {
@@ -96,7 +101,11 @@ class CatsContainer extends Component {
               </Modal.Title>
             </Modal.Header>
           </Modal>
-          <GiftModal showModal={this.state.showGiftModal} hideModal={() => this.hideModal} />
+          <GiftModal
+            showModal={this.state.showGiftModal}
+            hideModal={() => this.hideModal}
+            cats={this.props.cats}
+            accessories={this.freeAccessories()} />
           <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} handleActionClick={this.handleActionClick} />
         </div>
       )
