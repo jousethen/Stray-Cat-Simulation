@@ -42,7 +42,7 @@ export const proceedToNextDay = (cats, actionsAvailable) => {
         body: JSON.stringify(catData)
       };
 
-      fetch(`/api/${cat.id}`, catConfig);
+      fetch(`/api/cats/${cat.id}`, catConfig);
     });
 
     const catConfig = {
@@ -68,7 +68,7 @@ export const proceedToNextDay = (cats, actionsAvailable) => {
     };
 
     //Kick off Behind the Scene Randomized Actions
-    fetch(`/api/overnight-adventures`, catConfig);
+    fetch(`/api/cats/overnight-adventures`, catConfig);
 
     //Save Unused Actions
     fetch(`/api/user`, userConfig).then(() => {
