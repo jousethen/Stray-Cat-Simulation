@@ -1,4 +1,4 @@
-import React, { Component, ReactCSSTransitionGroup } from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchTodaysCats, proceedToNextDay } from '../actions/cat_actions';
 import CatCard from '../components/CatCard';

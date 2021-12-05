@@ -1,4 +1,4 @@
-export const catReducer = (state = { cats: [], loading: false }, action) => {
+export const catReducer = (state = { cats: [], loading: false, loadingNextDay: false }, action) => {
   console.log(action);
   let catIndex;
   switch (action.type) {
@@ -66,7 +66,18 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
         cats: [...state.cats],
         loading: false,
       }
-
+    case "LOADING_NEXT_DAY":
+      return {
+        ...state,
+        cats: state.cats,
+        loadingNextDay: true,
+      };
+    case "LOADED_NEXT_DAY":
+      return {
+        ...state,
+        cats: [],
+        loadingNextDay: false,
+      };
     default:
       return state;
   }
