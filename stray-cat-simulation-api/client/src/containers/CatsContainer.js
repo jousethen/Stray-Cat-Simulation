@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchTodaysCats } from '../actions/cat_actions';
 import CatCard from '../components/CatCard';
+import { Modal } from 'react-bootstrap';
 import cuid from 'cuid';
 export const cuidFn = cuid;
 
@@ -9,6 +10,7 @@ class CatsContainer extends Component {
   constructor() {
     super();
     this.state = {
+      showModal: false
     }
   }
   componentDidMount() {
@@ -21,9 +23,9 @@ class CatsContainer extends Component {
   }
 
 
-  toggleEdit = () => {
+  hideModal = () => {
     this.setState({
-      disableEdit: "false"
+      showModal: false
     })
   }
 
@@ -46,6 +48,11 @@ class CatsContainer extends Component {
 
       this.props.useAction();
     }
+    else {
+      this.setState({
+        showModal: true
+      })
+    }
 
   }
 
@@ -54,6 +61,19 @@ class CatsContainer extends Component {
       return (
         <div className="cats-container">
           {this.props.actions}{this.renderCatCards()}
+          <Modal
+            size="sm"
+            show={this.state.showModal}
+            onHide={() => this.hideModal()}
+            aria-labelledby="example-modal-sizes-title-sm"
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="example-modal-sizes-title-sm">
+                No Actions Left for Today
+              </Modal.Title>
+            </Modal.Header>
+          </Modal>
+
         </div>
       )
     }
