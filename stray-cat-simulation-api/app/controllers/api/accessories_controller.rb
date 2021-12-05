@@ -1,4 +1,4 @@
-class AccessoriesController < ApplicationController
+class Api::AccessoriesController < ApplicationController
   def index
     accessories = Accessory.all
     render json: accessories
