@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchTodaysCats } from '../actions/cat_actions';
 import CatCard from '../components/CatCard';
+import Footer from '../components/Footer';
 import { Modal } from 'react-bootstrap';
 import cuid from 'cuid';
 export const cuidFn = cuid;
@@ -73,7 +74,7 @@ class CatsContainer extends Component {
               </Modal.Title>
             </Modal.Header>
           </Modal>
-
+          <Footer />
         </div>
       )
     }
@@ -81,6 +82,7 @@ class CatsContainer extends Component {
       return (
         <div className="cats-container">
           NO CATS
+          <Footer />
         </div>
       )
     }
