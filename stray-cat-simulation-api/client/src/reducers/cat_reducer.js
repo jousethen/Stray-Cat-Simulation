@@ -54,6 +54,19 @@ export const catReducer = (state = { cats: [], loading: false }, action) => {
         loading: false,
       }
 
+    case "RENAME_CAT":
+      catIndex = state.cats.findIndex((cat) => {
+        return cat.id === action.catId
+      });
+
+      state.cats[catIndex] = rename(state.cats[catIndex], action.name)
+
+      return {
+        ...state,
+        cats: [...state.cats],
+        loading: false,
+      }
+
     default:
       return state;
   }
@@ -92,5 +105,10 @@ function pet(cat) {
   if (cat.food > 10) { cat.food = 10 }
   if (cat.affection > 10) { cat.affection = 10 }
 
+  return cat;
+}
+
+function rename(cat, name) {
+  cat.name = name;
   return cat;
 }

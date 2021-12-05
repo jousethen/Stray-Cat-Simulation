@@ -94,8 +94,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: "PET_CAT", catId })
     },
 
-    renameCat: (catId) => {
-      dispatch({ type: "RENAME_CAT", catId })
+    renameCat: (catId, name) => {
+      dispatch({ type: "RENAME_CAT", catId, name })
     },
 
 
