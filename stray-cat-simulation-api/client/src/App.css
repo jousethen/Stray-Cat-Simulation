@@ -19,6 +19,11 @@
   background-color: blue;
 }
 
+.btn-dark{
+  padding: 0;
+  border-color: transparent;
+  
+}
 
 .cat-health .progress-bar {
   background-color: crimson;

@@ -6,7 +6,11 @@ import cuid from 'cuid';
 export const cuidFn = cuid;
 
 class CatsContainer extends Component {
-
+  constructor() {
+    super();
+    this.state = {
+    }
+  }
   componentDidMount() {
     //Fetch All cats
     this.props.fetchTodaysCats();
@@ -14,6 +18,13 @@ class CatsContainer extends Component {
 
   renderCatCards = () => {
     return this.props.cats.map((cat) => { return (<CatCard cat={cat} key={cuidFn()} handleActionClick={this.handleActionClick} />) })
+  }
+
+
+  toggleEdit = () => {
+    this.setState({
+      disableEdit: "false"
+    })
   }
 
   handleActionClick = (catId, action) => {
@@ -25,6 +36,10 @@ class CatsContainer extends Component {
         case "heal": this.props.healCat(catId);
           break;
         case "pet": this.props.petCat(catId);
+          break;
+        case "rename":
+          let newName = prompt("Name Your Friend:", "");
+          this.props.renameCat(catId, newName);
           break;
         default:
       }
@@ -78,6 +93,11 @@ const mapDispatchToProps = (dispatch) => {
     petCat: (catId) => {
       dispatch({ type: "PET_CAT", catId })
     },
+
+    renameCat: (catId) => {
+      dispatch({ type: "RENAME_CAT", catId })
+    },
+
 
     useAction: () => {
       dispatch({ type: "USE_ACTION" })
