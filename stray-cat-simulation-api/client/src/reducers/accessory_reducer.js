@@ -1,4 +1,4 @@
-export const accessoryReducer = (state = { accessories =[] }, action) => {
+export const accessoryReducer = (state = { accessories: [] }, action) => {
   switch (action.type) {
     case "LOADING_ACCESSORIES":
       return {

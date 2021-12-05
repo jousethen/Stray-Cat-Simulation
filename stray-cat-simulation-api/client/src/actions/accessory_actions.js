@@ -11,24 +11,23 @@ export const fetchAccessories = () => {
         return response.json();
       })
       .then((json) => {
-        let accessories = loadFreeAccessories(json)
-        dispatch({ type: "LOAD_ACCESSORIES_SUCCESS", accessories: accessories })
+        dispatch({ type: "LOAD_ACCESSORIES_SUCCESS", accessories: json })
       });
   };
 }
 
 
 //*---------------UTILITY------------------------*//
-function loadFreeAccessories(accessories) {
-  let accArr = accessories.filter(a => {
-    return a.id === null
-  });
-  return accArr;
-}
+// function loadFreeAccessories(accessories) {
+//   let accArr = accessories.filter(a => {
+//     return a.id === null
+//   });
+//   return accArr;
+// }
 
-function loadtakenAccessories(accessories) {
-  let accArr = accessories.filter(a => {
-    return a.id !== null
-  });
-  return accArr;
-}
+// function loadtakenAccessories(accessories) {
+//   let accArr = accessories.filter(a => {
+//     return a.id !== null
+//   });
+//   return accArr;
+// }

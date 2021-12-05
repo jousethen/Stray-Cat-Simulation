@@ -6,6 +6,7 @@ import CatCard from '../components/CatCard';
 import Footer from '../components/Footer';
 import { Modal } from 'react-bootstrap';
 import cuid from 'cuid';
+import { fetchAccessories } from '../actions/accessory_actions';
 export const cuidFn = cuid;
 
 class CatsContainer extends Component {
@@ -19,6 +20,7 @@ class CatsContainer extends Component {
     //Fetch All cats
     this.props.fetchTodaysCats();
     this.props.fetchActionsAvailable();
+    this.props.fetchAccessories();
   }
 
   renderCatCards = () => {
@@ -99,7 +101,8 @@ const mapStateToProps = (state) => {
   return {
     cats: state.cats.cats,
     loading: state.cats.loading,
-    actions: state.user.actions
+    actions: state.user.actions,
+    accessories: state.accessories.accessories
   };
 };
 
@@ -135,6 +138,10 @@ const mapDispatchToProps = (dispatch) => {
 
     fetchActionsAvailable: () => {
       dispatch(fetchActionsAvailable());
+    },
+
+    fetchAccessories: () => {
+      dispatch(fetchAccessories());
     }
   }
 }
