@@ -5,6 +5,14 @@ const Footer = (props) => {
   return (
     <div className="footer">
       <h1>Actions: {props.actions} </h1>
+
+      <Button
+        variant="outline-light"
+        size="lg"
+        onClick={() => { props.handleActionClick(null, "gift") }}>
+        Gift
+      </Button>
+
       <Button
         variant="outline-light"
         size="lg"

@@ -13,7 +13,8 @@ class CatsContainer extends Component {
   constructor() {
     super();
     this.state = {
-      showModal: false
+      showActionModal: false,
+      showGiftModal: false
     }
   }
   componentDidMount() {
@@ -30,10 +31,14 @@ class CatsContainer extends Component {
     })
   }
 
+  freeAccessories = () => {
+    return this.props.accessories.filter((a) => { return a.cat_id === null })
+  }
 
   hideModal = () => {
     this.setState({
-      showModal: false
+      showActionModal: false,
+      showGiftModal: false
     })
   }
 
@@ -49,6 +54,10 @@ class CatsContainer extends Component {
         case "pet": this.props.petCat(catId);
           break;
         case "rename":
+          let newName = prompt("Name Your Friend:", "");
+          this.props.renameCat(catId, newName);
+          break;
+        case "gift":
           let newName = prompt("Name Your Friend:", "");
           this.props.renameCat(catId, newName);
           break;
@@ -75,7 +84,7 @@ class CatsContainer extends Component {
           {this.renderCatCards()}
           <Modal
             size="sm"
-            show={this.state.showModal}
+            show={this.state.showActionModal}
             onHide={() => this.hideModal()}
             aria-labelledby="example-modal-sizes-title-sm" >
             <Modal.Header closeButton>
@@ -84,7 +93,7 @@ class CatsContainer extends Component {
               </Modal.Title>
             </Modal.Header>
           </Modal>
-          <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} />
+          <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} handleActionClick={this.handleActionClick} />
         </div>
       )
     }
@@ -92,7 +101,7 @@ class CatsContainer extends Component {
       return (
         <div className="cats-container">
           NO CATS
-          <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} />
+          <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} handleActionClick={this.handleActionClick} />
         </div>
       )
     }

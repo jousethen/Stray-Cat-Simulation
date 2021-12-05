@@ -7,7 +7,7 @@ export const accessoryReducer = (state = { accessories: [] }, action) => {
     case "LOAD_ACCESSORIES_SUCCESS":
       return {
         ...state,
-        actions: action.accessories
+        accessories: action.accessories
       }
     default:
       return state;
