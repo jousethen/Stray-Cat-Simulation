@@ -4,6 +4,7 @@ import { fetchTodaysCats, proceedToNextDay } from '../actions/cat_actions';
 import { fetchActionsAvailable } from '../actions/user_actions';
 import CatCard from '../components/CatCard';
 import Footer from '../components/Footer';
+import GiftModal from '../components/GiftModal';
 import { Modal } from 'react-bootstrap';
 import cuid from 'cuid';
 import { fetchAccessories } from '../actions/accessory_actions';
@@ -58,8 +59,10 @@ class CatsContainer extends Component {
           this.props.renameCat(catId, newName);
           break;
         case "gift":
-          let newName = prompt("Name Your Friend:", "");
-          this.props.renameCat(catId, newName);
+          this.setState({
+            showActionModal: false,
+            showGiftModal: true
+          })
           break;
         default:
       }
@@ -93,6 +96,7 @@ class CatsContainer extends Component {
               </Modal.Title>
             </Modal.Header>
           </Modal>
+          <GiftModal showModal={this.state.showGiftModal} hideModal={() => this.hideModal} />
           <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} handleActionClick={this.handleActionClick} />
         </div>
       )
