@@ -4,7 +4,11 @@ const Footer = (props) => {
 
   return (
     <div className="footer">
-      <Button variant="outline-light" size="lg">Next Day</Button>
+      <Button
+        variant="outline-light"
+        size="lg">
+        Next Day
+      </Button>
     </div>
   )
 }

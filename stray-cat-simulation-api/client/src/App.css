@@ -22,7 +22,6 @@
 .btn-dark{
   padding: 0;
   border-color: transparent;
-  
 }
 
 .cat-health .progress-bar {
@@ -55,4 +54,13 @@
 
 .footer .btn {
   margin: 10px;
+}
+
+.next-day {
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+.next-day.hide {
+  opacity: 0;
+  pointer-events:none;
 }

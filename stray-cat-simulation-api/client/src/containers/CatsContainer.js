@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, ReactCSSTransitionGroup } from 'react';
 import { connect } from "react-redux";
-import { fetchTodaysCats } from '../actions/cat_actions';
+import { fetchTodaysCats, proceedToNextDay } from '../actions/cat_actions';
 import CatCard from '../components/CatCard';
 import Footer from '../components/Footer';
 import { Modal } from 'react-bootstrap';
@@ -31,6 +31,7 @@ class CatsContainer extends Component {
   }
 
   handleActionClick = (catId, action) => {
+    //Handle the button presses withing the Cat Cards
 
     if (this.props.actions > 0) {
       switch (action) {
@@ -46,7 +47,6 @@ class CatsContainer extends Component {
           break;
         default:
       }
-
       this.props.useAction();
     }
     else {
@@ -58,16 +58,16 @@ class CatsContainer extends Component {
   }
 
   render() {
-    if (this.props.cats.length > 0) {
+    if (this.props.cats.length > 0 && this.props.loading === false) {
       return (
         <div className="cats-container">
+
           {this.props.actions}{this.renderCatCards()}
           <Modal
             size="sm"
             show={this.state.showModal}
             onHide={() => this.hideModal()}
-            aria-labelledby="example-modal-sizes-title-sm"
-          >
+            aria-labelledby="example-modal-sizes-title-sm" >
             <Modal.Header closeButton>
               <Modal.Title id="example-modal-sizes-title-sm">
                 No Actions Left for Today
@@ -120,6 +120,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: "RENAME_CAT", catId, name })
     },
 
+    nextDay: () => {
+      dispatch(proceedToNextDay());
+    },
 
     useAction: () => {
       dispatch({ type: "USE_ACTION" })
