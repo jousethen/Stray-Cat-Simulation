@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchTodaysCats, proceedToNextDay } from '../actions/cat_actions';
+import { fetchActionsAvailable } from '../actions/user_actions';
 import CatCard from '../components/CatCard';
 import Footer from '../components/Footer';
 import { Modal } from 'react-bootstrap';
@@ -17,6 +18,7 @@ class CatsContainer extends Component {
   componentDidMount() {
     //Fetch All cats
     this.props.fetchTodaysCats();
+    this.props.fetchActionsAvailable();
   }
 
   renderCatCards = () => {
@@ -129,6 +131,10 @@ const mapDispatchToProps = (dispatch) => {
 
     useAction: () => {
       dispatch({ type: "USE_ACTION" })
+    },
+
+    fetchActionsAvailable: () => {
+      dispatch(fetchActionsAvailable());
     }
   }
 }

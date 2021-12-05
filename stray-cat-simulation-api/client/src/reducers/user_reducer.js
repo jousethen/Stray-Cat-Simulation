@@ -5,6 +5,15 @@ export const userReducer = (state = { actions: 5, loadingNextDay: false }, actio
         ...state,
         actions: state.actions - 1
       };
+    case "GETTING_ACTIONS":
+      return {
+        ...state,
+      };
+    case "GET_ACTIONS_SUCCESS":
+      return {
+        ...state,
+        actions: action.actions
+      }
     case "LOADING_NEXT_DAY":
       return {
         ...state,
