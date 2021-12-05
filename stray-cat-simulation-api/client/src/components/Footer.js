@@ -6,7 +6,8 @@ const Footer = (props) => {
     <div className="footer">
       <Button
         variant="outline-light"
-        size="lg">
+        size="lg"
+        onClick={(event) => { props.nextDayHandler() }}>
         Next Day
       </Button>
     </div>

@@ -54,7 +54,10 @@ class CatsContainer extends Component {
         showModal: true
       })
     }
+  }
 
+  nextDayHandler = () => {
+    this.props.proceedToNextDay(this.props.cats, this.props.actions)
   }
 
   render() {
@@ -74,7 +77,7 @@ class CatsContainer extends Component {
               </Modal.Title>
             </Modal.Header>
           </Modal>
-          <Footer />
+          <Footer nextDayHandler={this.nextDayHandler} />
         </div>
       )
     }
@@ -82,7 +85,7 @@ class CatsContainer extends Component {
       return (
         <div className="cats-container">
           NO CATS
-          <Footer />
+          <Footer nextDayHandler={this.nextDayHandler} />
         </div>
       )
     }
@@ -120,8 +123,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: "RENAME_CAT", catId, name })
     },
 
-    nextDay: () => {
-      dispatch(proceedToNextDay());
+    proceedToNextDay: (cats, actionsAvailable) => {
+      dispatch(proceedToNextDay(cats, actionsAvailable));
     },
 
     useAction: () => {
