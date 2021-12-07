@@ -26,6 +26,9 @@ class App extends Component {
     else {
       return (
         <>
+          <img id="background"
+            src="/images/background.png"
+            alt="on to the next day" />
           <CatsContainer />
         </>
       )
