@@ -1,14 +1,30 @@
 import React from 'react';
-import { ProgressBar, Button } from 'react-bootstrap'
-import { FaEdit } from 'react-icons/fa'
+import { ProgressBar, Button, OverlayTrigger, Popover } from 'react-bootstrap';
+import { FaEdit } from 'react-icons/fa';
+
 const CatCard = (props) => {
   let imageUrl = `images/${props.cat.image}`;
   let cat = props.cat;
   return (
     <div className="cat-card">
-      <img
-        src={imageUrl}
-        alt={props.cat.image} />
+      <OverlayTrigger
+        trigger="hover"
+        key={cat.id}
+        placement="right"
+        overlay={
+          <Popover>
+            <Popover.Body>
+              Equipment: <ul>{props.accessories.map((acc) => { return <li>{acc.name}</li> })}</ul>
+
+            </Popover.Body>
+          </Popover>
+        }
+      >
+        <img
+          src={imageUrl}
+          alt={props.cat.image} />
+      </OverlayTrigger>
+
       <div className="cat-name">{cat.name} <Button variant="dark" size="sm" onClick={() => { props.handleActionClick(cat.id, "rename") }}><FaEdit />
       </Button></div>
       <div className="cat-health">
