@@ -9,8 +9,10 @@
 .cat-card {
   position: relative;
   width: 200px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+   z-index: 1;
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.0);
   transition: 0.3s;
+  background-color: whitesmoke;
 }
 
 .btn-primary{

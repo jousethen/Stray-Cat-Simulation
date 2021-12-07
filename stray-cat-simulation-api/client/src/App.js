@@ -28,7 +28,7 @@ class App extends Component {
         <>
           <img id="background"
             src="/images/background.png"
-            alt="on to the next day" />
+            alt="Suburban Porch" />
           <CatsContainer />
         </>
       )
