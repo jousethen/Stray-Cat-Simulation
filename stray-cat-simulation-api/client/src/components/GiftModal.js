@@ -21,9 +21,22 @@ class GiftModal extends Component {
           {acc.food !== 0 ? <li>Food: {acc.food}</li> : null}
           {acc.toughness !== 0 ? <li>Toughness: {acc.toughness}</li> : null}
         </ul>
+
       )
     }
   }
+
+  renderCatButtons = () => {
+    //Only return these buttons if there is an accessory found
+    if (this.props.accessory) {
+      return (
+        this.props.cats.map((cat) => {
+          <Button onClick={this.props.giftAcc(cat.id)}>{cat.name}</Button>
+        })
+      )
+    }
+  }
+
   render() {
     return (
       <Modal
@@ -42,8 +55,8 @@ class GiftModal extends Component {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => { this.props.hideModal() }}>Close</Button>
-          <Button variant="primary">Save changes</Button>
+          <Button variant="secondary" onClick={this.props.hideModal()}>Close</Button>
+          {this.renderCatButtons()}
         </Modal.Footer>
       </Modal>
     )
