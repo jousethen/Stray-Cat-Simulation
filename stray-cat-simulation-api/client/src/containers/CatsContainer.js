@@ -82,7 +82,7 @@ class CatsContainer extends Component {
   }
 
   nextDayHandler = () => {
-    this.props.proceedToNextDay(this.props.cats, this.props.actions)
+    this.props.proceedToNextDay(this.props.cats, this.props.actions, this.props.accessories)
   }
 
   handleGiftAcc = (accId, catId) => {
@@ -159,8 +159,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: "RENAME_CAT", catId, name })
     },
 
-    proceedToNextDay: (cats, actionsAvailable) => {
-      dispatch(proceedToNextDay(cats, actionsAvailable));
+    proceedToNextDay: (cats, actionsAvailable, accessories) => {
+      dispatch(proceedToNextDay(cats, actionsAvailable, accessories));
     },
 
     useAction: () => {

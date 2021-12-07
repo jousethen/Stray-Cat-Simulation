@@ -20,7 +20,7 @@ export const fetchTodaysCats = () => {
   };
 }
 
-export const proceedToNextDay = (cats, actionsAvailable) => {
+export const proceedToNextDay = (cats, actionsAvailable, accessories) => {
   return (dispatch) => {
     dispatch({ type: "LOADING_NEXT_DAY" });
     //Iterate Through Each Updated Cat and Update
@@ -74,6 +74,27 @@ export const proceedToNextDay = (cats, actionsAvailable) => {
     fetch(`/api/user`, userConfig).then(() => {
       dispatch({ type: "WAIT_TO_CONTINUE" });
     });
+
+    //Save Accessory Ownerships
+    accessories.forEach((acc) => {
+      const accessoryData = {
+        id: acc.id,
+        cat_id: acc.cat_id
+      };
+
+      const accessoryConfig = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(accessoryData)
+      };
+
+      fetch(`/api/accessories/${acc.id}`, accessoryConfig);
+
+    })
+
 
 
   };

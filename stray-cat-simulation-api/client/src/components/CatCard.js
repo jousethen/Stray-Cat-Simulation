@@ -8,14 +8,13 @@ const CatCard = (props) => {
   return (
     <div className="cat-card">
       <OverlayTrigger
-        trigger="hover"
+        trigger={['hover', 'focus']}
         key={cat.id}
         placement="right"
         overlay={
           <Popover>
             <Popover.Body>
-              Equipment: <ul>{props.accessories.map((acc) => { return <li>{acc.name}</li> })}</ul>
-
+              Equipment: <ul>{props.accessories.map((acc) => { return <li key={`${acc.id}`}>{acc.name}</li> })}</ul>
             </Popover.Body>
           </Popover>
         }
