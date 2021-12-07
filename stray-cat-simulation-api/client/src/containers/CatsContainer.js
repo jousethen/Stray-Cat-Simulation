@@ -105,7 +105,7 @@ class CatsContainer extends Component {
             showModal={this.state.showGiftModal}
             hideModal={() => this.hideModal}
             cats={this.props.cats}
-            accessories={this.freeAccessories()} />
+            accessory={this.props.accessories[Math.floor(Math.random() * 3)]} />
           <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} handleActionClick={this.handleActionClick} />
         </div>
       )

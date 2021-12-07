@@ -3,7 +3,27 @@ import React, { Component } from 'react';
 import Button from '@restart/ui/esm/Button';
 import { Modal } from "react-bootstrap";
 class GiftModal extends Component {
+  constructor() {
+    super();
+    this.state = {
+      foundAccessory: null
+    }
+  }
 
+  renderBody = () => {
+    let acc = this.props.accessory;
+    console.log(acc)
+    if (acc) {
+      return (
+        <ul>
+          {acc.hp !== 0 ? <li>HP: {acc.hp}</li> : null}
+          {acc.affection !== 0 ? <li>Affection: {acc.affection}</li> : null}
+          {acc.food !== 0 ? <li>Food: {acc.food}</li> : null}
+          {acc.toughness !== 0 ? <li>Toughness: {acc.toughness}</li> : null}
+        </ul>
+      )
+    }
+  }
   render() {
     return (
       <Modal
@@ -13,16 +33,16 @@ class GiftModal extends Component {
         aria-labelledby="example-modal-sizes-title-sm" >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-sm">
-            Gift Accessory
+            {this.props.accessory ? `Found ${this.props.accessory.name}!` : "No Accessory Found"}
           </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <p>Modal body text goes here.</p>
+          {this.renderBody()}
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary">Close</Button>
+          <Button variant="secondary" onClick={() => { this.props.hideModal() }}>Close</Button>
           <Button variant="primary">Save changes</Button>
         </Modal.Footer>
       </Modal>
