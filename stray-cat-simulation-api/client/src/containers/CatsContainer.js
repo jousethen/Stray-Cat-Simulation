@@ -42,6 +42,7 @@ class CatsContainer extends Component {
       showGiftModal: false
     })
 
+    console.log(this.props.accessories)
     //Remove an Action if turning off Gift Modal 
     if (this.props.actions > 0) {
       this.props.useAction();
@@ -84,6 +85,10 @@ class CatsContainer extends Component {
     this.props.proceedToNextDay(this.props.cats, this.props.actions)
   }
 
+  handleGiftAcc = (accId, catId) => {
+    this.props.giftAccessory(accId, catId);
+    this.hideModal();
+  }
   render() {
     if (this.props.cats.length > 0 && this.props.loading === false) {
       return (
@@ -105,7 +110,8 @@ class CatsContainer extends Component {
             showModal={this.state.showGiftModal}
             hideModal={() => this.hideModal}
             cats={this.props.cats}
-            accessory={this.props.accessories[Math.floor(Math.random() * 3)]} />
+            accessory={this.props.accessories[Math.floor(Math.random() * 3)]}
+            giftAccessory={this.handleGiftAcc} />
           <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} handleActionClick={this.handleActionClick} />
         </div>
       )
@@ -167,9 +173,14 @@ const mapDispatchToProps = (dispatch) => {
 
     fetchAccessories: () => {
       dispatch(fetchAccessories());
+    },
+
+    giftAccessory: (accId, catId) => {
+      dispatch({ type: "GIFT_ACCESSORY", accId, catId });
     }
   }
 }
+
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(CatsContainer)

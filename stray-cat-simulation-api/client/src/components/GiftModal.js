@@ -3,16 +3,9 @@ import React, { Component } from 'react';
 import Button from '@restart/ui/esm/Button';
 import { Modal } from "react-bootstrap";
 class GiftModal extends Component {
-  constructor() {
-    super();
-    this.state = {
-      foundAccessory: null
-    }
-  }
 
   renderBody = () => {
     let acc = this.props.accessory;
-    console.log(acc)
     if (acc) {
       return (
         <ul>
@@ -31,7 +24,12 @@ class GiftModal extends Component {
     if (this.props.accessory) {
       return (
         this.props.cats.map((cat) => {
-          <Button onClick={this.props.giftAcc(cat.id)}>{cat.name}</Button>
+          return (<Button variant="primary" key={cat.id} onClick={() => {
+            this.props.hideModal();
+            this.props.giftAccessory(this.props.accessory.id, cat.id);
+
+          }
+          }>{cat.name}</Button>)
         })
       )
     }
@@ -40,12 +38,11 @@ class GiftModal extends Component {
   render() {
     return (
       <Modal
-        size="sm"
+        size="lg"
         show={this.props.showModal}
-        onHide={this.props.hideModal()}
-        aria-labelledby="example-modal-sizes-title-sm" >
+        onHide={this.props.hideModal()} >
         <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">
+          <Modal.Title>
             {this.props.accessory ? `Found ${this.props.accessory.name}!` : "No Accessory Found"}
           </Modal.Title>
         </Modal.Header>
