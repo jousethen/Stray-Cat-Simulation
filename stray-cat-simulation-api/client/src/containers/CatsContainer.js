@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchTodaysCats, proceedToNextDay } from '../actions/cat_actions';
 import { fetchActionsAvailable } from '../actions/user_actions';
 import CatCard from '../components/CatCard';
-import Footer from '../components/Footer';
+import Header from '../components/Header';
 import GiftModal from '../components/GiftModal';
 import { Modal } from 'react-bootstrap';
 import cuid from 'cuid';
@@ -91,35 +91,38 @@ class CatsContainer extends Component {
   render() {
     if (this.props.cats.length > 0 && this.props.loading === false) {
       return (
-        <div className="cats-container">
+        <>
+          <Header nextDayHandler={this.nextDayHandler} actions={this.props.actions} handleActionClick={this.handleActionClick} />
+          <div className="cats-container">
 
-          {this.renderCatCards()}
-          <Modal
-            size="sm"
-            show={this.state.showActionModal}
-            onHide={() => this.hideModal()}
-            aria-labelledby="example-modal-sizes-title-sm" >
-            <Modal.Header closeButton>
-              <Modal.Title id="example-modal-sizes-title-sm">
-                No Actions Left for Today
-              </Modal.Title>
-            </Modal.Header>
-          </Modal>
-          <GiftModal
-            showModal={this.state.showGiftModal}
-            hideModal={() => this.hideModal}
-            cats={this.props.cats}
-            accessory={this.props.accessories[Math.floor(Math.random() * 30)]}
-            giftAccessory={this.handleGiftAcc} />
-          <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} handleActionClick={this.handleActionClick} />
-        </div>
+            {this.renderCatCards()}
+            <Modal
+              size="sm"
+              show={this.state.showActionModal}
+              onHide={() => this.hideModal()}
+              aria-labelledby="example-modal-sizes-title-sm" >
+              <Modal.Header closeButton>
+                <Modal.Title id="example-modal-sizes-title-sm">
+                  No Actions Left for Today
+                </Modal.Title>
+              </Modal.Header>
+            </Modal>
+            <GiftModal
+              showModal={this.state.showGiftModal}
+              hideModal={() => this.hideModal}
+              cats={this.props.cats}
+              accessory={this.props.accessories[Math.floor(Math.random() * 30)]}
+              giftAccessory={this.handleGiftAcc} />
+
+          </div>
+        </>
       )
     }
     else {
       return (
         <div className="cats-container">
           NO CATS
-          <Footer nextDayHandler={this.nextDayHandler} actions={this.props.actions} handleActionClick={this.handleActionClick} />
+          <Header nextDayHandler={this.nextDayHandler} actions={this.props.actions} handleActionClick={this.handleActionClick} />
         </div>
       )
     }

@@ -10,15 +10,19 @@
   position: relative;
   width: 200px;
    z-index: 1;
-  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.0);
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   background-color: whitesmoke;
+  padding: 5px;
+  border: thin;
+  border-color: black;
+  margin-top: 10px;
 }
 
 .btn-primary{
   margin-top: 10px;
   margin-right: 2px;
-  background-color: blue;
+  background-color:darkblue;
 }
 
 .btn-dark{
@@ -45,10 +49,10 @@
 
 .footer {
   background-color: black;
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 7%;
-  bottom: 0;
+  top: 0;
   display: flex;
   justify-content: flex-end; 
   gap: 10;
