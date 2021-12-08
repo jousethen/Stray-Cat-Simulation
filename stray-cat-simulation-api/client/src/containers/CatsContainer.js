@@ -54,10 +54,13 @@ class CatsContainer extends Component {
     if (this.props.actions > 0) {
       switch (action) {
         case "feed": this.props.feedCat(catId);
+          this.props.useAction();
           break;
         case "heal": this.props.healCat(catId);
+          this.props.useAction();
           break;
         case "pet": this.props.petCat(catId);
+          this.props.useAction();
           break;
         case "rename":
           let newName = prompt("Name Your Friend:", "");
@@ -68,10 +71,10 @@ class CatsContainer extends Component {
             showActionModal: false,
             showGiftModal: true
           })
+          this.props.useAction();
           break;
         default:
       }
-      this.props.useAction();
     }
     else {
       this.setState({
