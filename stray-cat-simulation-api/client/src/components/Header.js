@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 const Footer = (props) => {
 
   return (
-    <div className="footer">
+    <div className="header">
       <h1>Actions: {props.actions} </h1>
 
       <Button

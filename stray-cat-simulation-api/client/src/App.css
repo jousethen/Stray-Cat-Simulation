@@ -47,7 +47,7 @@
   font-weight: bold;
 }
 
-.footer {
+.header {
   background-color: black;
   position: relative;
   width: 100%;
@@ -58,11 +58,11 @@
   gap: 10;
 }
 
-.footer .btn {
+.header .btn {
   margin: 10px;
 }
 
-.footer h1 {
+.header h1 {
   color: white;
   margin-top: 10px
   
