@@ -1,5 +1,4 @@
 export const catReducer = (state = { cats: [], loading: false }, action) => {
-  console.log(action);
   let catIndex;
   switch (action.type) {
     case "LOADING_CATS":

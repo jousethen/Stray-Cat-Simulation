@@ -42,10 +42,6 @@ class CatsContainer extends Component {
       showGiftModal: false
     })
 
-    //Remove an Action if turning off Gift Modal 
-    if (this.props.actions > 0) {
-      this.props.useAction();
-    }
   }
 
   handleActionClick = (catId, action) => {

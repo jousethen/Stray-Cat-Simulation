@@ -1,6 +1,7 @@
 export const userReducer = (state = { actions: 5, loadingNextDay: false }, action) => {
   switch (action.type) {
     case "USE_ACTION":
+      console.log(action)
       return {
         ...state,
         actions: state.actions - 1

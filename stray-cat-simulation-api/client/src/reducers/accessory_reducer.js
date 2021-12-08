@@ -1,5 +1,4 @@
 export const accessoryReducer = (state = { accessories: [] }, action) => {
-  console.log(action)
   switch (action.type) {
     case "LOADING_ACCESSORIES":
       return {
